@@ -1,0 +1,612 @@
+---
+layout: null
+title: "Home"
+description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working with HTML, CSS, JavaScript, PHP and Linux. Interested in networking, anonymization, hacking and AI."
+---
+<!--
+  Fonts:
+  - Google Sans
+    Copyright (c) Google Inc.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Google+Sans
+    https://scripts.sil.org/OFL
+
+  - Inter
+    Copyright (c) Rasmus Andersson
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Inter
+    https://scripts.sil.org/OFL
+
+  - JetBrains Mono
+    Copyright (c) JetBrains s.r.o.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/JetBrains+Mono
+    https://scripts.sil.org/OFL
+
+  Fonts are loaded via Google Fonts (https://fonts.google.com), which serves
+  them under their respective open-source licenses. No modification has been
+  made to the font files themselves.
+-->
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% seo %}
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#1e1e24;
+  --bg-1:#252530;
+  --bg-2:#2d2d3a;
+  --bg-3:#38384a;
+  --border:#3f3f52;
+  --fg-0:#eeeef4;
+  --fg-1:#b8b8c8;
+  --fg-2:#84849c;
+  --blue:#5aa4ec;
+  --blue-deep:#3a7bd5;
+  --green:#57e389;
+  --yellow:#f8e45c;
+  --orange:#ffa348;
+  --pink:#ec6ba5;
+  --purple:#a687e0;
+  --red:#ed6a5e;
+  --radius-lg:18px;
+  --radius-md:12px;
+  --radius-sm:8px;
+  --shadow: 0 12px 40px rgba(0,0,0,0.45);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html,body{scrollbar-width:none;-ms-overflow-style:none;}
+html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(90,164,236,0.10), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(236,107,165,0.08), transparent 40%),
+    var(--bg-0);
+  color:var(--fg-0);
+  font-family:'Google Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--blue-deep);color:#fff;}
+a{color:inherit;}
+.mono{font-family:'JetBrains Mono',monospace;}
+
+.titlebar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 22px;
+  background:rgba(30,30,36,0.82);
+  backdrop-filter:blur(18px) saturate(140%);
+  border-bottom:1px solid var(--border);
+}
+.titlebar-left{display:flex;align-items:center;gap:10px;}
+.traffic{display:flex;gap:8px;}
+.traffic span{width:12px;height:12px;border-radius:50%;display:block;}
+.traffic .t1{background:var(--red);}
+.traffic .t2{background:var(--yellow);}
+.traffic .t3{background:var(--green);}
+.titlebar-title{font-size:13.5px;color:var(--fg-2);letter-spacing:0.2px;}
+.titlebar-right{display:flex;align-items:center;gap:8px;}
+.blog-btn{
+  border:1px solid var(--border);
+  background:var(--bg-2);
+  color:var(--fg-0);
+  font-family:inherit;
+  font-size:12.5px;
+  font-weight:600;
+  padding:7px 16px;
+  border-radius:999px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:border-color .18s ease, color .18s ease;
+}
+.blog-btn:hover{border-color:var(--blue-deep);color:var(--blue);}
+.wrap{max-width:960px;margin:0 auto;padding:56px 24px 90px;}
+
+.hero{
+  display:flex;
+  align-items:center;
+  gap:34px;
+  background:linear-gradient(160deg, var(--bg-1), var(--bg-2));
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:38px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  right:-60px;
+  top:-60px;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(90,164,236,0.25), transparent 70%);
+}
+.avatar-wrap{position:relative;flex-shrink:0;}
+.avatar{
+  width:128px;
+  height:128px;
+  border-radius:32%;
+  object-fit:cover;
+  background:var(--bg-3);
+  border:3px solid var(--border);
+  display:block;
+}
+.status-dot{
+  position:absolute;
+  bottom:6px;
+  right:6px;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:var(--green);
+  border:3px solid var(--bg-1);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(87,227,137,0.5);}
+  50%{box-shadow:0 0 0 6px rgba(87,227,137,0);}
+}
+.hero-text h1{margin:0 0 4px;font-size:30px;font-weight:800;letter-spacing:-0.5px;}
+.hero-text .handle{color:var(--blue);font-weight:600;font-size:15px;margin-bottom:12px;display:inline-block;}
+.hero-tagline{color:var(--fg-1);font-size:15px;line-height:1.6;max-width:480px;margin:0 0 16px;white-space:pre-line;}
+.badges{display:flex;flex-wrap:wrap;gap:8px;}
+.badge{
+  font-size:12px;
+  font-weight:600;
+  padding:5px 12px;
+  border-radius:999px;
+  background:var(--bg-3);
+  border:1px solid var(--border);
+  color:var(--fg-1);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.badge .dot{width:7px;height:7px;border-radius:50%;}
+
+.section{margin-top:52px;}
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px;}
+.section-head h2{font-size:20px;font-weight:700;margin:0;}
+.section-head .line{flex:1;height:1px;background:var(--border);}
+
+.terminal{
+  background:#191920;
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.terminal-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--bg-2);border-bottom:1px solid var(--border);}
+.terminal-bar span{width:11px;height:11px;border-radius:50%;}
+.terminal-bar .b1{background:var(--red);}
+.terminal-bar .b2{background:var(--yellow);}
+.terminal-bar .b3{background:var(--green);}
+.terminal-bar .fname{margin-left:8px;color:var(--fg-2);font-size:12px;font-family:'JetBrains Mono',monospace;}
+.terminal-body{padding:20px 22px;font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.9;color:#c8ccd8;}
+.terminal-body .prompt{color:var(--green);}
+.terminal-body .path{color:var(--blue);}
+.terminal-body .comment{color:var(--fg-2);}
+.caret{display:inline-block;width:8px;height:15px;background:var(--fg-0);margin-left:2px;animation:blink 1s steps(1) infinite;vertical-align:middle;}
+@keyframes blink{50%{opacity:0;}}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(140px,1fr));gap:12px;}
+.skill-card{
+  background:var(--bg-1);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:16px;
+  transition:transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.skill-card:hover{transform:translateY(-3px);border-color:var(--blue-deep);background:var(--bg-2);}
+.skill-card .emoji{font-size:22px;display:block;margin-bottom:8px;}
+.skill-card .name{font-weight:700;font-size:14px;margin-bottom:6px;}
+.bar-track{height:5px;border-radius:99px;background:var(--bg-3);overflow:hidden;}
+.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg, var(--blue-deep), var(--blue));}
+
+.blog-list{display:flex;flex-direction:column;gap:10px;}
+.blog-item{
+  display:block;
+  background:var(--bg-1);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:14px 18px;
+  text-decoration:none;
+  transition:border-color .18s ease, transform .18s ease;
+}
+.blog-item:hover{border-color:var(--blue-deep);transform:translateY(-2px);}
+.blog-item-title{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--fg-0);}
+.blog-empty{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--fg-2);}
+.blog-cta{margin-top:16px;}
+.btn-outline{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12.5px;
+  padding:9px 20px;
+  background:none;
+  color:var(--blue);
+  border:1px solid var(--blue-deep);
+  border-radius:999px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+  transition:background .18s ease;
+}
+.btn-outline:hover{background:rgba(90,164,236,0.10);}
+
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px,1fr));gap:12px;}
+.contact-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:var(--bg-1);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:16px 18px;
+  text-decoration:none;
+  color:inherit;
+  transition:transform .18s ease, border-color .18s ease;
+}
+.contact-card:hover{transform:translateY(-3px);border-color:var(--blue-deep);}
+.icon-tag{
+  width:38px;height:38px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.purple-tag{background:rgba(166,135,224,0.15);}
+.yellow-tag{background:rgba(248,228,92,0.15);}
+.blue-tag{background:rgba(90,164,236,0.15);}
+.contact-card .label{font-size:11.5px;color:var(--fg-2);margin-bottom:2px;}
+.contact-card .value{font-size:13.5px;font-weight:600;overflow-wrap:anywhere;word-break:break-all;}
+
+.projects-status{
+  color:var(--fg-2);
+  font-size:13px;
+  padding:14px 4px;
+  font-family:'JetBrains Mono',monospace;
+  white-space:pre-line;
+}
+.projects-status.is-error{color:var(--red);}
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:16px;
+}
+.project-card{
+  background:var(--bg-1);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:22px;
+  position:relative;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.project-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
+  border-color:var(--blue-deep);
+}
+.project-card .repo-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.project-card .icon-tag{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.project-card .stars{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--yellow);font-family:'JetBrains Mono',monospace;}
+.project-card h3{margin:0 0 8px;font-size:16px;font-weight:700;}
+.project-card p{margin:0 0 14px;color:var(--fg-1);font-size:13.5px;line-height:1.6;}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-size:11px;font-family:'JetBrains Mono',monospace;padding:3px 9px;border-radius:6px;background:var(--bg-3);color:var(--fg-1);}
+.project-card .repo-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12.5px;font-weight:600;color:var(--blue);text-decoration:none;}
+.project-card .repo-link:hover{text-decoration:underline;}
+.projects-more-wrap{display:flex;justify-content:center;margin-top:24px;}
+.projects-more-btn{
+  padding:10px 24px;
+  border-radius:999px;
+  border:1px solid var(--blue-deep);
+  background:none;
+  color:var(--blue);
+  cursor:pointer;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12.5px;
+  font-weight:600;
+  transition:background .18s ease;
+}
+.projects-more-btn:hover{background:rgba(90,164,236,0.10);}
+.green-tag{background:rgba(87,227,137,0.15);}
+.orange-tag{background:rgba(255,163,72,0.15);}
+.pink-tag{background:rgba(236,107,165,0.15);}
+
+footer{
+  text-align:center;
+  padding:40px 24px 20px;
+  color:var(--fg-2);
+  font-size:12.5px;
+}
+footer .heart{color:var(--pink);}
+
+@media (max-width:900px){
+  .wrap{padding:40px 20px 70px;}
+  .section{margin-top:40px;}
+}
+@media (max-width:640px){
+  .titlebar{padding:8px 14px;}
+  .titlebar-title{font-size:12px;}
+  .hero{flex-direction:column;text-align:center;padding:24px 20px;gap:20px;}
+  .hero-tagline{max-width:100%;}
+  .badges{justify-content:center;}
+  .hero-text h1{font-size:24px;}
+  .wrap{padding:32px 16px 60px;}
+  .grid{grid-template-columns:repeat(auto-fit, minmax(120px,1fr));}
+  .contact-grid{grid-template-columns:1fr;}
+  .projects{grid-template-columns:1fr;}
+  .terminal-body{font-size:12.5px;padding:16px 16px;}
+  .section-head h2{font-size:18px;}
+}
+@media (max-width:400px){
+  .avatar{width:96px;height:96px;}
+  .hero-text h1{font-size:20px;}
+  .badge{font-size:11px;padding:4px 10px;}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  .status-dot,.caret{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="titlebar">
+  <div class="titlebar-left">
+    <div class="traffic"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div>
+    <div class="titlebar-title mono">~/rafych/portfolio</div>
+  </div>
+  <div class="titlebar-right">
+    <a class="blog-btn" href="/blog" id="blog-nav-btn">Блог</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="avatar-wrap">
+      <img class="avatar" src="/icon.png" alt="Rafych avatar">
+      <span class="status-dot" title="online"></span>
+    </div>
+    <div class="hero-text">
+      <h1 data-i18n="hero-name">Danil Rafailovich Ivanov</h1>
+      <span class="handle mono">@Rafych</span>
+      <p class="hero-tagline" data-i18n="tagline">
+        Hi, I mess around with all kinds of programs in my free time. Networks, anonymization, hacking and AI are what interest me most, but I'll try anything that looks fun. My motto: if there are two things you want to do and only enough time for one — do both anyway!
+      </p>
+      <div class="badges">
+        <span class="badge"><span class="dot" style="background:var(--green)"></span><span data-i18n="badge1">Efficiency-focused</span></span>
+        <span class="badge"><span class="dot" style="background:var(--blue)"></span><span data-i18n="badge2">Looking for co-developers</span></span>
+        <span class="badge"><span class="dot" style="background:var(--orange)"></span><span data-i18n="badge3">Fueled by passion</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 data-i18n="h-about">whoami</h2>
+      <div class="line"></div>
+    </div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="b1"></span><span class="b2"></span><span class="b3"></span>
+        <span class="fname">bash</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="prompt">rafych@dev</span>:<span class="path">~</span>$ whoami</div>
+        <div><span data-i18n="term-name">Danil, developer</span></div>
+        <div style="margin-top:8px;"><span class="prompt">rafych@dev</span>:<span class="path">~</span>$ cat mood.txt</div>
+        <div><span class="comment"><span data-i18n="term-mood"># probably refactoring something that already worked fine</span></span></div>
+        <div style="margin-top:8px;"><span class="prompt">rafych@dev</span>:<span class="path">~</span>$ <span class="caret"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 data-i18n="h-stack">Stack</h2>
+      <div class="line"></div>
+    </div>
+    <div class="grid">
+      <div class="skill-card">
+        <span class="emoji">🧱</span>
+        <div class="name">HTML</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="emoji">🟨</span>
+        <div class="name">JavaScript</div>
+        <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="emoji">🎨</span>
+        <div class="name">CSS</div>
+        <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="emoji">🐘</span>
+        <div class="name">PHP</div>
+        <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="emoji">🐧</span>
+        <div class="name">Linux</div>
+        <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="emoji">🌐</span>
+        <div class="name" data-i18n="skill-network">Network</div>
+        <div class="bar-track"><div class="bar-fill" style="width:50%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 data-i18n="h-projects">Projects</h2>
+      <div class="line"></div>
+    </div>
+    <div id="projects-status" class="projects-status mono" data-i18n="proj-loading">Loading repositories from GitHub…</div>
+    <div class="projects" id="projects-grid"></div>
+    <div class="projects-more-wrap">
+      <button type="button" id="projects-more" class="projects-more-btn mono" data-i18n="proj-more" style="display:none;">Show more</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 data-i18n="h-blog">Blog</h2>
+      <div class="line"></div>
+    </div>
+    <div class="blog-list" id="blog-list">
+      {% for post in site.posts limit:3 %}
+      <a class="blog-item" href="{{ post.url | relative_url }}"><span class="blog-item-title">{{ post.title }}</span></a>
+      {% else %}
+      <div class="blog-empty" id="blog-empty" data-i18n="blog-empty">No posts yet</div>
+      {% endfor %}
+    </div>
+    <div class="blog-cta">
+      <a class="btn-outline" href="/blog" id="blog-view-all" data-i18n="blog-view-all">View all posts →</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 data-i18n="h-contact">Get in touch</h2>
+      <div class="line"></div>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="https://github.com/Rafych" target="_blank" rel="noopener noreferrer">
+        <div class="icon-tag purple-tag">🐙</div>
+        <div>
+          <div class="label">GitHub</div>
+          <div class="value mono">@Rafych</div>
+        </div>
+      </a>
+      <a class="contact-card" href="mailto:danilrafailovicivanov@proton.me">
+        <div class="icon-tag yellow-tag">✉️</div>
+        <div>
+          <div class="label" data-i18n="mail-label">Email</div>
+          <div class="value mono">danilrafailovicivanov@proton.me</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://discord.gg/VBVY2tU8Ky" target="_blank" rel="noopener noreferrer">
+        <div class="icon-tag blue-tag">💬</div>
+        <div>
+          <div class="label" data-i18n="discord-label">Discord</div>
+          <div class="value mono">@Rafych_dev</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <span data-i18n="footer">Made with</span> <span class="heart">♥</span> <span data-i18n="footer2">and way too much caffeine.</span>
+</footer>
+
+<script src="/assets/js/lang.js"></script>
+<script src="/assets/js/cache.js"></script>
+<script src="/assets/js/repos.js"></script>
+<script>
+const dict = {
+  en: {
+    title: "Home | Rafych's website",
+    "hero-name": "Danil Rafailovich Ivanov",
+    tagline:
+      "I think tech and knowledge should be free — open it, break it, rebuild it, learn from it. Locking stuff behind walls just makes everyone dumber.\n" +
+      "I don't follow rules I don't understand, and I don't trust anything I haven't tested myself. Trust code, not vibes.\n" +
+      "Humans run on patterns just like machines do — so I build things that just work, every time, no surprises. Clean code, encrypted by default, no weird backdoors.\n" +
+      "Two things to do and time for one? Do both. Sleep is a debugging tool for later.",
+    badge1: "open source or it didn't happen",
+    badge2: "powered by curiosity + caffeine",
+    badge3: "ship fast, refactor later",
+    "h-about": "whoami",
+    "term-name": "Danil, developer",
+    "term-mood": "# same input, same output — no cap, no bugs",
+    "h-stack": "Stack",
+    "skill-network": "Network",
+    "h-projects": "Projects",
+    "proj-loading": "Pulling the open, hackable stuff from GitHub…",
+    "proj-error": "GitHub's giving me the silent treatment right now.\nTry refreshing the page — nothing should stay locked away for long.",
+    "proj-empty": "Nothing public here yet.\nIt's all coming, free and open.",
+    "proj-nodesc": "No description provided.",
+    "proj-updated": "Updated",
+    "proj-more": "Show me more",
+    "h-blog": "Blog",
+    "blog-empty": "Nothing here yet",
+    "blog-view-all": "Browse all posts →",
+    "h-contact": "Reach me — encrypt it if you want",
+    "mail-label": "Email",
+    "discord-label": "Discord",
+    footer: "Made with",
+    footer2: "way too much caffeine."
+  },
+  ru: {
+    title: "Главная | Сайт Рафыча",
+    "hero-name": "Данил Рафаилович Иванов",
+    tagline:
+      "Считаю, что технологии и знания должны быть открыты всем — тыкай, ломай, разбирай на запчасти, учись. Прятать инфу под замком — это просто делать всех тупее.\n" +
+      "Не следую правилам, в которых не вижу смысла, и не верю на слово — только то, что проверил сам. Код важнее хайпа.\n" +
+      "Люди — те же паттерны, что и машины, поэтому я пишу так, чтобы всё работало стабильно, без сюрпризов. Чистый код, шифрование по умолчанию, никаких костылей и бэкдоров.\n" +
+      "Два дела и время только на одно? Делаю оба. Сон — это баг, который пофиксим потом.",
+    badge1: "опенсорс — иначе не считово",
+    badge2: "работает на любопытстве и кофеине",
+    badge3: "сначала запускаю, потом причёсываю",
+    "h-about": "whoami",
+    "term-name": "Данил, разработчик",
+    "term-mood": "# один вход — один и тот же выход, без сюрпризов",
+    "h-stack": "Стек",
+    "skill-network": "Сети",
+    "h-projects": "Проекты",
+    "proj-loading": "Тяну открытое и доступное для взлома с GitHub…",
+    "proj-error": "GitHub сейчас молчит как партизан.\nПопробуйте обновить страницу — ничто не должно быть запертым надолго.",
+    "proj-empty": "Публичных репозиториев пока нет.\nВсё свободное и открытое уже варится, загляните позже.",
+    "proj-nodesc": "Описание не указано.",
+    "proj-updated": "Обновлено",
+    "proj-more": "Ещё, пожалуйста",
+    "h-blog": "Блог",
+    "blog-empty": "Пока пусто",
+    "blog-view-all": "Смотреть все посты →",
+    "h-contact": "Свяжитесь — шифруйте, если хотите",
+    "mail-label": "Почта",
+    "discord-label": "Дискорд",
+    footer: "Сделано с",
+    footer2: "на литрах кофе."
+  }
+};
+
+let currentLang = RafychLang.detect();
+
+const repos = RafychRepos.createController({
+  gridEl: document.getElementById('projects-grid'),
+  statusEl: document.getElementById('projects-status'),
+  moreBtnEl: document.getElementById('projects-more'),
+  username: 'Rafych',
+  excludeNames: ['rafych.github.io', 'rafych'],
+  pageSize: 6,
+  dict: () => dict[currentLang],
+  lang: () => currentLang
+});
+
+RafychLang.apply(dict[currentLang], currentLang);
+repos.load();
+</script>
+
+</body>
+</html>
