@@ -29,7 +29,7 @@ permalink: /blog/
   made to the font files themselves.
 -->
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,15 +114,15 @@ footer .heart{color:var(--pink);}
     <div class="titlebar-title mono">~/rafych/blog</div>
   </div>
   <div class="titlebar-right">
-    <a class="blog-btn" href="/" id="home-btn">Home</a>
+    <a class="blog-btn" href="/" id="home-btn" data-i18n="home">Home</a>
   </div>
 </div>
 
 <div class="wrap">
-  <p class="page-label" id="page-label">Blog</p>
-  <h1 class="page-title" id="page-title">All posts</h1>
+  <p class="page-label" id="page-label" data-i18n="pageLabel">Blog</p>
+  <h1 class="page-title" id="page-title" data-i18n="pageTitle">All posts</h1>
   <div class="search-box">
-    <input type="text" class="search-input" id="search-input" placeholder="Search...">
+    <input type="text" class="search-input" id="search-input" data-i18n-placeholder="searchPlaceholder" placeholder="Search...">
   </div>
   <div class="blog-list" id="blog-list">
     <div class="blog-empty" id="blog-loading">Loading...</div>
@@ -131,7 +131,7 @@ footer .heart{color:var(--pink);}
 </div>
 
 <footer>
-  <span id="footer-year">© 2026 Rafych</span> — <span id="footer-made">made with</span> <span class="heart">♥</span>
+  <span id="footer-year">© 2026 Rafych</span> — <span id="footer-made" data-i18n="made">made with</span> <span class="heart">♥</span>
 </footer>
 
 <script src="/assets/js/lang.js"></script>
@@ -139,6 +139,7 @@ footer .heart{color:var(--pink);}
 <script>
 const C = {
   en: {
+    title: 'All posts | Rafych\'s website',
     home: 'Home',
     pageLabel: 'Blog',
     pageTitle: 'Everything, unlocked',
@@ -151,6 +152,7 @@ const C = {
     made: 'made with'
   },
   ru: {
+    title: 'Все посты | Сайт Рафыча',
     home: 'Главная',
     pageLabel: 'Блог',
     pageTitle: 'Всё в открытом доступе',
@@ -166,16 +168,6 @@ const C = {
 
 let currentLang = RafychLang.detect();
 
-function applyLang() {
-  const d = C[currentLang];
-  document.documentElement.lang = currentLang;
-  document.getElementById('home-btn').textContent = d.home;
-  document.getElementById('page-label').textContent = d.pageLabel;
-  document.getElementById('page-title').textContent = d.pageTitle;
-  document.getElementById('search-input').placeholder = d.searchPlaceholder;
-  document.getElementById('footer-made').textContent = d.made;
-}
-
 const postList = RafychBlog.createListController({
   listEl: document.getElementById('blog-list'),
   pagEl: document.getElementById('search-pagination'),
@@ -187,7 +179,7 @@ document.getElementById('search-input').addEventListener('input', (e) => {
   postList.setQuery(e.target.value);
 });
 
-applyLang();
+RafychLang.apply(C[currentLang], currentLang);
 postList.load();
 
 document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear() + ' Rafych';
