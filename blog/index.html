@@ -1,1 +1,197 @@
+---
+layout: null
+title: "All posts"
+description: Browse all Rafych posts in one place.
+permalink: /blog/
+---
+<!--
+  Fonts:
+  - Google Sans
+    Copyright (c) Google Inc.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Google+Sans
+    https://scripts.sil.org/OFL
 
+  - Inter
+    Copyright (c) Rasmus Andersson
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Inter
+    https://scripts.sil.org/OFL
+
+  - JetBrains Mono
+    Copyright (c) JetBrains s.r.o.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/JetBrains+Mono
+    https://scripts.sil.org/OFL
+
+  Fonts are loaded via Google Fonts (https://fonts.google.com), which serves
+  them under their respective open-source licenses. No modification has been
+  made to the font files themselves.
+-->
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% seo %}
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#1e1e24; --bg-1:#252530; --bg-2:#2d2d3a; --bg-3:#38384a;
+  --border:#3f3f52; --fg-0:#eeeef4; --fg-1:#b8b8c8; --fg-2:#84849c;
+  --blue:#5aa4ec; --blue-deep:#3a7bd5; --green:#57e389; --yellow:#f8e45c;
+  --orange:#ffa348; --pink:#ec6ba5; --purple:#a687e0; --red:#ed6a5e;
+  --radius-lg:18px; --radius-md:12px; --radius-sm:8px;
+  --shadow: 0 12px 40px rgba(0,0,0,0.45);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html,body{scrollbar-width:none;-ms-overflow-style:none;}
+html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(90,164,236,0.10), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(236,107,165,0.08), transparent 40%),
+    var(--bg-0);
+  color:var(--fg-0);
+  font-family:'Google Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.titlebar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:rgba(30,30,36,0.82);backdrop-filter:blur(18px) saturate(140%);border-bottom:1px solid var(--border);}
+.titlebar-left{display:flex;align-items:center;gap:10px;}
+.traffic{display:flex;gap:8px;}
+.traffic span{width:12px;height:12px;border-radius:50%;display:block;}
+.traffic .t1{background:var(--red);}
+.traffic .t2{background:var(--yellow);}
+.traffic .t3{background:var(--green);}
+.titlebar-title{font-size:13.5px;color:var(--fg-2);letter-spacing:0.2px;}
+.titlebar-right{display:flex;align-items:center;gap:8px;}
+.blog-btn{border:1px solid var(--border);background:var(--bg-2);color:var(--fg-0);font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 16px;border-radius:999px;cursor:pointer;text-decoration:none;transition:border-color .18s ease, color .18s ease;}
+.blog-btn:hover{border-color:var(--blue-deep);color:var(--blue);}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 90px;}
+.page-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pink);letter-spacing:2px;margin-bottom:0.5rem;}
+.page-title{font-size:28px;font-weight:800;color:var(--fg-0);margin-bottom:2rem;}
+.search-box{width:100%;margin-bottom:1.2rem;}
+.search-input{width:100%;background:var(--bg-1);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.7rem 0.9rem;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--fg-0);outline:none;transition:border-color .18s ease;}
+.search-input:focus{border-color:var(--blue-deep);}
+.search-input::placeholder{color:var(--fg-2);}
+.blog-list{display:flex;flex-direction:column;gap:10px;}
+.blog-item{display:block;background:var(--bg-1);border:1px solid var(--border);border-radius:var(--radius-md);padding:1rem 1.2rem;text-decoration:none;transition:border-color .18s ease, transform .18s ease;}
+.blog-item:hover{border-color:var(--blue-deep);transform:translateY(-2px);}
+.blog-item-title{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--fg-0);}
+.blog-empty{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--fg-2);white-space:pre-line;}
+.search-pagination{display:flex;justify-content:center;gap:10px;margin-top:1.2rem;}
+.search-pagination button{background:none;border:1px solid var(--border);color:var(--fg-1);padding:5px 14px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;transition:all .18s ease;}
+.search-pagination button:hover{border-color:var(--blue-deep);color:var(--blue);}
+footer{text-align:center;padding:32px 24px 20px;color:var(--fg-2);font-size:12.5px;}
+footer .heart{color:var(--pink);}
+@media (max-width: 700px) {
+  .wrap{padding:2.4rem 1.2rem;}
+  .page-title{font-size:24px;}
+}
+@media (max-width: 500px) {
+  .titlebar{padding:8px 14px;}
+  .titlebar-title{font-size:12px;}
+  .wrap{padding:2rem 1rem;}
+  .page-title{font-size:20px;}
+  .blog-item{padding:0.8rem 1rem;}
+  .search-pagination{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<div class="titlebar">
+  <div class="titlebar-left">
+    <div class="traffic"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div>
+    <div class="titlebar-title mono">~/rafych/blog</div>
+  </div>
+  <div class="titlebar-right">
+    <a class="blog-btn" href="/" id="home-btn">Home</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="page-label" id="page-label">Blog</p>
+  <h1 class="page-title" id="page-title">All posts</h1>
+  <div class="search-box">
+    <input type="text" class="search-input" id="search-input" placeholder="Search...">
+  </div>
+  <div class="blog-list" id="blog-list">
+    <div class="blog-empty" id="blog-loading">Loading...</div>
+  </div>
+  <div class="search-pagination" id="search-pagination" style="display:none;"></div>
+</div>
+
+<footer>
+  <span id="footer-year">© 2026 Rafych</span> — <span id="footer-made">made with</span> <span class="heart">♥</span>
+</footer>
+
+<script src="/assets/js/lang.js"></script>
+<script src="/assets/js/blog-posts.js"></script>
+<script>
+const C = {
+  en: {
+    home: 'Home',
+    pageLabel: 'Blog',
+    pageTitle: 'Everything, unlocked',
+    searchPlaceholder: 'Dig through the archive…',
+    empty: 'Nothing here yet.\nKnowledge takes time to brew.',
+    noResults: 'Nothing matches that.\nTry another search.',
+    loading: 'Fetching posts…',
+    prevBtn: '‹ Prev',
+    nextBtn: 'Next ›',
+    made: 'made with'
+  },
+  ru: {
+    home: 'Главная',
+    pageLabel: 'Блог',
+    pageTitle: 'Всё в открытом доступе',
+    searchPlaceholder: 'Копаемся в архиве…',
+    empty: 'Пока ничего нет.\nЗнание требует времени, чтобы созреть.',
+    noResults: 'Совпадений не найдено.\nПопробуйте другой запрос.',
+    loading: 'Загружаем посты…',
+    prevBtn: '‹ Назад',
+    nextBtn: 'Далее ›',
+    made: 'сделано с'
+  }
+};
+
+let currentLang = RafychLang.detect();
+
+function applyLang() {
+  const d = C[currentLang];
+  document.documentElement.lang = currentLang;
+  document.getElementById('home-btn').textContent = d.home;
+  document.getElementById('page-label').textContent = d.pageLabel;
+  document.getElementById('page-title').textContent = d.pageTitle;
+  document.getElementById('search-input').placeholder = d.searchPlaceholder;
+  document.getElementById('footer-made').textContent = d.made;
+}
+
+const postList = RafychBlog.createListController({
+  listEl: document.getElementById('blog-list'),
+  pagEl: document.getElementById('search-pagination'),
+  pageSize: 10,
+  dict: () => C[currentLang]
+});
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+  postList.setQuery(e.target.value);
+});
+
+applyLang();
+postList.load();
+
+document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear() + ' Rafych';
+</script>
+
+</body>
+</html>
