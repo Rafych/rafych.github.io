@@ -188,12 +188,12 @@ footer .heart{color:var(--pink);}
     <div class="titlebar-title mono">~/rafych/blog</div>
   </div>
   <div class="titlebar-right">
-    <a class="blog-btn" href="/blog" id="blog-btn">Blog</a>
+    <a class="blog-btn" href="/blog" id="blog-btn" data-i18n="blog">Blog</a>
   </div>
 </div>
 
 <div class="wrap">
-  <p class="page-label" id="page-label">Blog</p>
+  <p class="page-label" id="page-label" data-i18n="pageLabel">Blog</p>
   <h1 class="post-title">{{ page.title }}</h1>
   <p class="post-date">{{ page.date | date: "%Y-%m-%d" }}</p>
   <div class="post-content">
@@ -218,9 +218,9 @@ footer .heart{color:var(--pink);}
   {% endif %}
 
   <div class="more-posts">
-    <p class="more-posts-label" id="more-posts-label">More posts</p>
+    <p class="more-posts-label" id="more-posts-label" data-i18n="morePostsLabel">More posts</p>
     <div class="search-box">
-      <input type="text" class="search-input" id="search-input" placeholder="Search...">
+      <input type="text" class="search-input" id="search-input" data-i18n-placeholder="searchPlaceholder" placeholder="Search...">
     </div>
     <div class="blog-list" id="blog-list">
       <div class="blog-empty" id="blog-loading">Loading...</div>
@@ -273,18 +273,12 @@ let currentLang = RafychLang.detect(PAGE_LANG);
 
 function applyLang() {
   const d = C[currentLang];
-  document.documentElement.lang = currentLang;
-  document.getElementById('blog-btn').textContent = d.blog;
-  document.getElementById('page-label').textContent = d.pageLabel;
-  document.getElementById('more-posts-label').textContent = d.morePostsLabel;
-  document.getElementById('search-input').placeholder = d.searchPlaceholder;
+  RafychLang.apply(d, currentLang);
 
   const prevLabelEl = document.getElementById('post-nav-prev-label');
   if (prevLabelEl) prevLabelEl.textContent = d.prevLabel;
   const nextLabelEl = document.getElementById('post-nav-next-label');
   if (nextLabelEl) nextLabelEl.textContent = d.nextLabel;
-
-  document.querySelectorAll('[data-i18n="footer"]').forEach(el => el.textContent = d.footer);
 }
 
 const CURRENT_URL = {{ page.url | jsonify }};
