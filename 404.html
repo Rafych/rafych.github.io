@@ -26,7 +26,7 @@ permalink: /404.html
   made to the font files themselves.
 -->
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,14 +93,14 @@ a{color:inherit;}
     <div class="traffic"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div>
     <div class="titlebar-title mono">~/rafych/404</div>
   </div>
-  <a class="home-btn" href="/" id="home-btn">Home</a>
+  <a class="home-btn" href="/" id="home-btn" data-i18n="home">Home</a>
 </div>
 
 <div class="center">
   <div class="card">
     <div class="code">404</div>
-    <p class="msg" id="msg">This page doesn't exist. Maybe it moved, maybe it never did.</p>
-    <a class="back" href="/" id="back-btn">Back home</a>
+    <p class="msg" id="msg" data-i18n="msg">This page doesn't exist. Maybe it moved, maybe it never did.</p>
+    <a class="back" href="/" id="back-btn" data-i18n="back">Back home</a>
   </div>
 </div>
 
@@ -108,11 +108,13 @@ a{color:inherit;}
 <script>
 const C = {
   en: {
+    title: '404 — Rafych',
     home: 'Home',
     msg: "This page doesn't exist, and no system gets to decide that for you —\nit's just genuinely not here.",
     back: 'Home, no questions asked'
   },
   ru: {
+    title: '404 — Рафыч',
     home: 'Главная',
     msg: 'Этой страницы не существует, и не какая-то система решает это за вас —\nеё здесь просто по-настоящему нет.',
     back: 'На главную, без вопросов'
@@ -120,11 +122,7 @@ const C = {
 };
 
 const lang = RafychLang.detect();
-const d = C[lang];
-document.documentElement.lang = lang;
-document.getElementById('home-btn').textContent = d.home;
-document.getElementById('msg').textContent = d.msg;
-document.getElementById('back-btn').textContent = d.back;
+RafychLang.apply(C[lang], lang);
 </script>
 
 </body>
