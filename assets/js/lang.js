@@ -24,7 +24,6 @@ window.RafychLang = (function () {
 
   function apply(dict, lang) {
     document.documentElement.setAttribute('lang', lang);
-    document.documentElement.setAttribute('data-lang', lang);
     if (dict.title) document.title = dict.title;
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
