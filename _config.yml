@@ -33,3 +33,4 @@ exclude:
   - README.md
   - node_modules
   - vendor
+include: [".well-known"]
