@@ -1,30 +1,6 @@
 ---
 permalink: /404.html
 ---
-<!--
-  Fonts:
-  - Google Sans
-    Copyright (c) Google Inc.
-    Licensed under the SIL Open Font License, Version 1.1
-    https://fonts.google.com/specimen/Google+Sans
-    https://scripts.sil.org/OFL
-
-  - Inter
-    Copyright (c) Rasmus Andersson
-    Licensed under the SIL Open Font License, Version 1.1
-    https://fonts.google.com/specimen/Inter
-    https://scripts.sil.org/OFL
-
-  - JetBrains Mono
-    Copyright (c) JetBrains s.r.o.
-    Licensed under the SIL Open Font License, Version 1.1
-    https://fonts.google.com/specimen/JetBrains+Mono
-    https://scripts.sil.org/OFL
-
-  Fonts are loaded via Google Fonts (https://fonts.google.com), which serves
-  them under their respective open-source licenses. No modification has been
-  made to the font files themselves.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,77 +10,36 @@ permalink: /404.html
 <title>404 | Rafych</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg-0:#1e1e24; --bg-1:#252530; --bg-2:#2d2d3a; --bg-3:#38384a;
-  --border:#3f3f52; --fg-0:#eeeef4; --fg-1:#b8b8c8; --fg-2:#84849c;
-  --blue:#5aa4ec; --blue-deep:#3a7bd5; --green:#57e389; --yellow:#f8e45c;
-  --pink:#ec6ba5; --red:#ed6a5e; --radius-lg:18px; --radius-md:12px;
-  --shadow: 0 12px 40px rgba(0,0,0,0.45);
-}
-*{box-sizing:border-box;}
-html,body{scrollbar-width:none;-ms-overflow-style:none;}
-html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;}
-body{
-  margin:0;
-  background:
-    radial-gradient(circle at 15% 0%, rgba(90,164,236,0.10), transparent 45%),
-    radial-gradient(circle at 85% 15%, rgba(236,107,165,0.08), transparent 40%),
-    var(--bg-0);
-  color:var(--fg-0);
-  font-family:'Google Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:inherit;}
-.mono{font-family:'JetBrains Mono',monospace;}
-.titlebar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:rgba(30,30,36,0.82);backdrop-filter:blur(18px) saturate(140%);border-bottom:1px solid var(--border);}
-.titlebar-left{display:flex;align-items:center;gap:10px;}
-.traffic{display:flex;gap:8px;}
-.traffic span{width:12px;height:12px;border-radius:50%;display:block;}
-.traffic .t1{background:var(--red);}
-.traffic .t2{background:var(--yellow);}
-.traffic .t3{background:var(--green);}
-.titlebar-title{font-size:13.5px;color:var(--fg-2);letter-spacing:0.2px;}
-.home-btn{border:1px solid var(--border);background:var(--bg-2);color:var(--fg-0);font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 16px;border-radius:999px;cursor:pointer;text-decoration:none;transition:border-color .18s ease, color .18s ease;}
-.home-btn:hover{border-color:var(--blue-deep);color:var(--blue);}
-.center{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem;}
-.card{background:linear-gradient(160deg, var(--bg-1), var(--bg-2));border:1px solid var(--border);border-radius:var(--radius-lg);padding:44px;box-shadow:var(--shadow);text-align:center;max-width:420px;}
-.code{font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:800;color:var(--pink);margin-bottom:12px;}
-.msg{font-size:15px;color:var(--fg-1);margin-bottom:22px;line-height:1.6;white-space:pre-line;}
-.back{font-family:'JetBrains Mono',monospace;font-size:12.5px;padding:9px 22px;background:none;color:var(--blue);border:1px solid var(--blue-deep);border-radius:999px;text-decoration:none;display:inline-block;transition:background .18s ease;}
-.back:hover{background:rgba(90,164,236,0.10);}
-@media (max-width:500px){
-  .titlebar{padding:8px 14px;}
-  .titlebar-title{font-size:12px;}
-  .card{padding:30px 24px;max-width:100%;}
-  .code{font-size:40px;}
-  .msg{font-size:14px;}
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/design-system.css">
 </head>
 <body>
 
-<div class="titlebar">
-  <div class="titlebar-left">
-    <div class="traffic"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div>
-    <div class="titlebar-title mono">~/rafych/404</div>
-  </div>
-  <a class="home-btn" href="/" id="home-btn" data-i18n="home">Home</a>
-</div>
+<canvas id="rf-bg-canvas" aria-hidden="true"></canvas>
 
-<div class="center">
-  <div class="card">
-    <div class="code">404</div>
-    <p class="msg" id="msg" data-i18n="msg">This page doesn't exist. Maybe it moved, maybe it never did.</p>
-    <a class="back" href="/" id="back-btn" data-i18n="back">Back home</a>
+<header class="rf-nav-wrap">
+  <nav class="rf-nav" aria-label="Primary">
+    <a class="rf-brand" href="/">
+      <span class="rf-brand-orb"></span>
+      <span class="rf-brand-path">~/rafych/<span>404</span></span>
+    </a>
+    <div class="rf-nav-controls">
+      <button type="button" class="rf-chip-btn rf-hide-mobile" data-fx-toggle title="Switch visual mode">FX: LIGHT</button>
+      <a class="rf-chip-btn is-primary" href="/" id="home-btn" data-i18n="home">Home</a>
+    </div>
+  </nav>
+</header>
+
+<main class="rf-center-stage">
+  <div class="rf-card rf-404-card">
+    <div class="rf-404-code">404</div>
+    <p class="rf-404-msg" id="msg" data-i18n="msg">This page doesn't exist. Maybe it moved, maybe it never did.</p>
+    <a class="rf-btn rf-btn--primary" href="/" id="back-btn" data-i18n="back">Back home</a>
   </div>
-</div>
+</main>
 
 <script src="/assets/js/lang.js"></script>
+<script src="/assets/js/fx.js"></script>
 <script>
 const C = {
   en: {
@@ -123,6 +58,7 @@ const C = {
 
 const lang = RafychLang.detect();
 RafychLang.apply(C[lang], lang);
+RafychFX.init();
 </script>
 
 </body>

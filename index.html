@@ -3,30 +3,6 @@ layout: null
 title: "Home"
 description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working with HTML, CSS, JavaScript, PHP and Linux. Interested in networking, anonymization, hacking and AI."
 ---
-<!--
-  Fonts:
-  - Google Sans
-    Copyright (c) Google Inc.
-    Licensed under the SIL Open Font License, Version 1.1
-    https://fonts.google.com/specimen/Google+Sans
-    https://scripts.sil.org/OFL
-
-  - Inter
-    Copyright (c) Rasmus Andersson
-    Licensed under the SIL Open Font License, Version 1.1
-    https://fonts.google.com/specimen/Inter
-    https://scripts.sil.org/OFL
-
-  - JetBrains Mono
-    Copyright (c) JetBrains s.r.o.
-    Licensed under the SIL Open Font License, Version 1.1
-    https://fonts.google.com/specimen/JetBrains+Mono
-    https://scripts.sil.org/OFL
-
-  Fonts are loaded via Google Fonts (https://fonts.google.com), which serves
-  them under their respective open-source licenses. No modification has been
-  made to the font files themselves.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,493 +12,284 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg-0:#1e1e24;
-  --bg-1:#252530;
-  --bg-2:#2d2d3a;
-  --bg-3:#38384a;
-  --border:#3f3f52;
-  --fg-0:#eeeef4;
-  --fg-1:#b8b8c8;
-  --fg-2:#84849c;
-  --blue:#5aa4ec;
-  --blue-deep:#3a7bd5;
-  --green:#57e389;
-  --yellow:#f8e45c;
-  --orange:#ffa348;
-  --pink:#ec6ba5;
-  --purple:#a687e0;
-  --red:#ed6a5e;
-  --radius-lg:18px;
-  --radius-md:12px;
-  --radius-sm:8px;
-  --shadow: 0 12px 40px rgba(0,0,0,0.45);
-}
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-html,body{scrollbar-width:none;-ms-overflow-style:none;}
-html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;}
-body{
-  margin:0;
-  background:
-    radial-gradient(circle at 15% 0%, rgba(90,164,236,0.10), transparent 45%),
-    radial-gradient(circle at 85% 15%, rgba(236,107,165,0.08), transparent 40%),
-    var(--bg-0);
-  color:var(--fg-0);
-  font-family:'Google Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
-::selection{background:var(--blue-deep);color:#fff;}
-a{color:inherit;}
-.mono{font-family:'JetBrains Mono',monospace;}
-
-.titlebar{
-  position:sticky;
-  top:0;
-  z-index:50;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 22px;
-  background:rgba(30,30,36,0.82);
-  backdrop-filter:blur(18px) saturate(140%);
-  border-bottom:1px solid var(--border);
-}
-.titlebar-left{display:flex;align-items:center;gap:10px;}
-.traffic{display:flex;gap:8px;}
-.traffic span{width:12px;height:12px;border-radius:50%;display:block;}
-.traffic .t1{background:var(--red);}
-.traffic .t2{background:var(--yellow);}
-.traffic .t3{background:var(--green);}
-.titlebar-title{font-size:13.5px;color:var(--fg-2);letter-spacing:0.2px;}
-.titlebar-right{display:flex;align-items:center;gap:8px;}
-.blog-btn{
-  border:1px solid var(--border);
-  background:var(--bg-2);
-  color:var(--fg-0);
-  font-family:inherit;
-  font-size:12.5px;
-  font-weight:600;
-  padding:7px 16px;
-  border-radius:999px;
-  cursor:pointer;
-  text-decoration:none;
-  transition:border-color .18s ease, color .18s ease;
-}
-.blog-btn:hover{border-color:var(--blue-deep);color:var(--blue);}
-.wrap{max-width:960px;margin:0 auto;padding:56px 24px 90px;}
-
-.hero{
-  display:flex;
-  align-items:center;
-  gap:34px;
-  background:linear-gradient(160deg, var(--bg-1), var(--bg-2));
-  border:1px solid var(--border);
-  border-radius:var(--radius-lg);
-  padding:38px;
-  box-shadow:var(--shadow);
-  position:relative;
-  overflow:hidden;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  right:-60px;
-  top:-60px;
-  width:220px;
-  height:220px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(90,164,236,0.25), transparent 70%);
-}
-.avatar-wrap{position:relative;flex-shrink:0;}
-.avatar{
-  width:128px;
-  height:128px;
-  border-radius:32%;
-  object-fit:cover;
-  background:var(--bg-3);
-  border:3px solid var(--border);
-  display:block;
-}
-.status-dot{
-  position:absolute;
-  bottom:6px;
-  right:6px;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  background:var(--green);
-  border:3px solid var(--bg-1);
-  animation:pulse 2.4s ease-in-out infinite;
-}
-@keyframes pulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(87,227,137,0.5);}
-  50%{box-shadow:0 0 0 6px rgba(87,227,137,0);}
-}
-.hero-text h1{margin:0 0 4px;font-size:30px;font-weight:800;letter-spacing:-0.5px;}
-.hero-text .handle{color:var(--blue);font-weight:600;font-size:15px;margin-bottom:12px;display:inline-block;}
-.hero-tagline{color:var(--fg-1);font-size:15px;line-height:1.6;max-width:480px;margin:0 0 16px;white-space:pre-line;}
-.badges{display:flex;flex-wrap:wrap;gap:8px;}
-.badge{
-  font-size:12px;
-  font-weight:600;
-  padding:5px 12px;
-  border-radius:999px;
-  background:var(--bg-3);
-  border:1px solid var(--border);
-  color:var(--fg-1);
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.badge .dot{width:7px;height:7px;border-radius:50%;}
-
-.section{margin-top:52px;}
-.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px;}
-.section-head h2{font-size:20px;font-weight:700;margin:0;}
-.section-head .line{flex:1;height:1px;background:var(--border);}
-
-.terminal{
-  background:#191920;
-  border:1px solid var(--border);
-  border-radius:var(--radius-md);
-  overflow:hidden;
-  box-shadow:var(--shadow);
-}
-.terminal-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--bg-2);border-bottom:1px solid var(--border);}
-.terminal-bar span{width:11px;height:11px;border-radius:50%;}
-.terminal-bar .b1{background:var(--red);}
-.terminal-bar .b2{background:var(--yellow);}
-.terminal-bar .b3{background:var(--green);}
-.terminal-bar .fname{margin-left:8px;color:var(--fg-2);font-size:12px;font-family:'JetBrains Mono',monospace;}
-.terminal-body{padding:20px 22px;font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.9;color:#c8ccd8;}
-.terminal-body .prompt{color:var(--green);}
-.terminal-body .path{color:var(--blue);}
-.terminal-body .comment{color:var(--fg-2);}
-.caret{display:inline-block;width:8px;height:15px;background:var(--fg-0);margin-left:2px;animation:blink 1s steps(1) infinite;vertical-align:middle;}
-@keyframes blink{50%{opacity:0;}}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(140px,1fr));gap:12px;}
-.skill-card{
-  background:var(--bg-1);
-  border:1px solid var(--border);
-  border-radius:var(--radius-md);
-  padding:16px;
-  transition:transform .18s ease, border-color .18s ease, background .18s ease;
-}
-.skill-card:hover{transform:translateY(-3px);border-color:var(--blue-deep);background:var(--bg-2);}
-.skill-card .emoji{font-size:22px;display:block;margin-bottom:8px;}
-.skill-card .name{font-weight:700;font-size:14px;margin-bottom:6px;}
-.bar-track{height:5px;border-radius:99px;background:var(--bg-3);overflow:hidden;}
-.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg, var(--blue-deep), var(--blue));}
-
-.blog-list{display:flex;flex-direction:column;gap:10px;}
-.blog-item{
-  display:block;
-  background:var(--bg-1);
-  border:1px solid var(--border);
-  border-radius:var(--radius-md);
-  padding:14px 18px;
-  text-decoration:none;
-  transition:border-color .18s ease, transform .18s ease;
-}
-.blog-item:hover{border-color:var(--blue-deep);transform:translateY(-2px);}
-.blog-item-title{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--fg-0);}
-.blog-empty{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--fg-2);}
-.blog-cta{margin-top:16px;}
-.btn-outline{
-  font-family:'JetBrains Mono',monospace;
-  font-size:12.5px;
-  padding:9px 20px;
-  background:none;
-  color:var(--blue);
-  border:1px solid var(--blue-deep);
-  border-radius:999px;
-  cursor:pointer;
-  text-decoration:none;
-  display:inline-block;
-  transition:background .18s ease;
-}
-.btn-outline:hover{background:rgba(90,164,236,0.10);}
-
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px,1fr));gap:12px;}
-.contact-card{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  background:var(--bg-1);
-  border:1px solid var(--border);
-  border-radius:var(--radius-md);
-  padding:16px 18px;
-  text-decoration:none;
-  color:inherit;
-  transition:transform .18s ease, border-color .18s ease;
-}
-.contact-card:hover{transform:translateY(-3px);border-color:var(--blue-deep);}
-.icon-tag{
-  width:38px;height:38px;border-radius:var(--radius-sm);
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;flex-shrink:0;
-}
-.purple-tag{background:rgba(166,135,224,0.15);}
-.yellow-tag{background:rgba(248,228,92,0.15);}
-.blue-tag{background:rgba(90,164,236,0.15);}
-.contact-card .label{font-size:11.5px;color:var(--fg-2);margin-bottom:2px;}
-.contact-card .value{font-size:13.5px;font-weight:600;overflow-wrap:anywhere;word-break:break-all;}
-
-.projects-status{
-  color:var(--fg-2);
-  font-size:13px;
-  padding:14px 4px;
-  font-family:'JetBrains Mono',monospace;
-  white-space:pre-line;
-}
-.projects-status.is-error{color:var(--red);}
-.projects{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-  gap:16px;
-}
-.project-card{
-  background:var(--bg-1);
-  border:1px solid var(--border);
-  border-radius:var(--radius-md);
-  padding:22px;
-  position:relative;
-  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-}
-.project-card:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow);
-  border-color:var(--blue-deep);
-}
-.project-card .repo-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.project-card .icon-tag{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
-.project-card .stars{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--yellow);font-family:'JetBrains Mono',monospace;}
-.project-card h3{margin:0 0 8px;font-size:16px;font-weight:700;}
-.project-card p{margin:0 0 14px;color:var(--fg-1);font-size:13.5px;line-height:1.6;}
-.tag-row{display:flex;flex-wrap:wrap;gap:6px;}
-.tag{font-size:11px;font-family:'JetBrains Mono',monospace;padding:3px 9px;border-radius:6px;background:var(--bg-3);color:var(--fg-1);}
-.project-card .repo-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12.5px;font-weight:600;color:var(--blue);text-decoration:none;}
-.project-card .repo-link:hover{text-decoration:underline;}
-.projects-more-wrap{display:flex;justify-content:center;margin-top:24px;}
-.projects-more-btn{
-  padding:10px 24px;
-  border-radius:999px;
-  border:1px solid var(--blue-deep);
-  background:none;
-  color:var(--blue);
-  cursor:pointer;
-  font-family:'JetBrains Mono',monospace;
-  font-size:12.5px;
-  font-weight:600;
-  transition:background .18s ease;
-}
-.projects-more-btn:hover{background:rgba(90,164,236,0.10);}
-.green-tag{background:rgba(87,227,137,0.15);}
-.orange-tag{background:rgba(255,163,72,0.15);}
-.pink-tag{background:rgba(236,107,165,0.15);}
-
-footer{
-  text-align:center;
-  padding:40px 24px 20px;
-  color:var(--fg-2);
-  font-size:12.5px;
-}
-footer .heart{color:var(--pink);}
-
-@media (max-width:900px){
-  .wrap{padding:40px 20px 70px;}
-  .section{margin-top:40px;}
-}
-@media (max-width:640px){
-  .titlebar{padding:8px 14px;}
-  .titlebar-title{font-size:12px;}
-  .hero{flex-direction:column;text-align:center;padding:24px 20px;gap:20px;}
-  .hero-tagline{max-width:100%;}
-  .badges{justify-content:center;}
-  .hero-text h1{font-size:24px;}
-  .wrap{padding:32px 16px 60px;}
-  .grid{grid-template-columns:repeat(auto-fit, minmax(120px,1fr));}
-  .contact-grid{grid-template-columns:1fr;}
-  .projects{grid-template-columns:1fr;}
-  .terminal-body{font-size:12.5px;padding:16px 16px;}
-  .section-head h2{font-size:18px;}
-}
-@media (max-width:400px){
-  .avatar{width:96px;height:96px;}
-  .hero-text h1{font-size:20px;}
-  .badge{font-size:11px;padding:4px 10px;}
-}
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto;}
-  .status-dot,.caret{animation:none;}
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/design-system.css">
 </head>
 <body>
 
-<div class="titlebar">
-  <div class="titlebar-left">
-    <div class="traffic"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div>
-    <div class="titlebar-title mono">~/rafych/portfolio</div>
-  </div>
-  <div class="titlebar-right">
-    <a class="blog-btn" href="/blog" id="blog-nav-btn" data-i18n="blog-nav-btn">Blog</a>
+<canvas id="rf-bg-canvas" aria-hidden="true"></canvas>
+
+<div id="rf-loader" class="rf-loader" role="status" aria-label="Loading">
+  <canvas id="rf-loader-canvas" aria-hidden="true"></canvas>
+  <div class="rf-loader-hud">
+    <div class="rf-loader-status">CONVERGING PARTICLES</div>
+    <div class="rf-loader-bar-track"><div class="rf-loader-bar-fill"></div></div>
+    <div class="rf-loader-meta">
+      <span class="rf-loader-pct">00%</span>
+      <span>CLICK TO SKIP</span>
+    </div>
   </div>
 </div>
 
-<div class="wrap">
-
-  <section class="hero">
-    <div class="avatar-wrap">
-      <img class="avatar" src="/icon.png" alt="Rafych avatar">
-      <span class="status-dot" title="online"></span>
+<header class="rf-nav-wrap">
+  <nav class="rf-nav" aria-label="Primary">
+    <a class="rf-brand" href="/">
+      <span class="rf-brand-orb"></span>
+      <span class="rf-brand-path">~/<span>rafych</span></span>
+    </a>
+    <div class="rf-nav-links">
+      <a class="rf-nav-link" href="#stack" data-i18n="h-stack">Stack</a>
+      <a class="rf-nav-link" href="#projects" data-i18n="h-projects">Projects</a>
+      <a class="rf-nav-link" href="#blog" data-i18n="h-blog">Blog</a>
+      <a class="rf-nav-link" href="#contact" data-i18n="nav-contact">Contact</a>
     </div>
-    <div class="hero-text">
-      <h1 data-i18n="hero-name">Danil Rafailovich Ivanov</h1>
-      <span class="handle mono">@Rafych</span>
-      <p class="hero-tagline" data-i18n="tagline">
-        Hi, I mess around with all kinds of programs in my free time. Networks, anonymization, hacking and AI are what interest me most, but I'll try anything that looks fun. My motto: if there are two things you want to do and only enough time for one — do both anyway!
+    <div class="rf-nav-controls">
+      <button type="button" class="rf-chip-btn rf-hide-mobile" data-fx-toggle title="Switch visual mode">FX: LIGHT</button>
+      <button type="button" class="rf-chip-btn rf-hide-mobile" data-replay-intro title="Replay intro animation">✦ INTRO</button>
+      <button type="button" class="rf-chip-btn" id="lang-toggle-btn" title="Switch language">EN</button>
+      <a class="rf-chip-btn is-primary" href="/blog" id="blog-nav-btn" data-i18n="blog-nav-btn">Blog</a>
+      <button type="button" class="rf-menu-toggle" id="rf-menu-toggle" aria-label="Menu" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="rf-mobile-drawer" id="rf-mobile-drawer">
+    <div class="rf-mobile-drawer-links">
+      <a class="rf-nav-link" href="#stack" data-i18n="h-stack">Stack</a>
+      <a class="rf-nav-link" href="#projects" data-i18n="h-projects">Projects</a>
+      <a class="rf-nav-link" href="#blog" data-i18n="h-blog">Blog</a>
+      <a class="rf-nav-link" href="#contact" data-i18n="nav-contact">Contact</a>
+    </div>
+    <div class="rf-mobile-drawer-actions">
+      <button type="button" class="rf-chip-btn" data-fx-toggle>FX: LIGHT</button>
+      <button type="button" class="rf-chip-btn" data-replay-intro>✦ INTRO</button>
+    </div>
+  </div>
+</header>
+
+<main class="rf-main">
+  <section class="rf-hero-bento">
+    <div class="rf-card rf-hero-card">
+      <div class="rf-hero-top">
+        <div class="rf-avatar-ring">
+          <img class="rf-avatar-img" src="/icon.png" alt="Rafych avatar">
+          <span class="rf-status-dot" title="online"></span>
+        </div>
+        <div>
+          <div class="rf-hero-eyebrow">
+            <span class="rf-handle-pill">@Rafych</span>
+            <span>ONLINE // OPEN SOURCE</span>
+          </div>
+          <h1 class="rf-hero-title" data-i18n="hero-name">Danil Rafailovich Ivanov</h1>
+        </div>
+      </div>
+
+      <p class="rf-hero-tagline" data-i18n="tagline">
+        I think tech and knowledge should be free — open it, break it, rebuild it, learn from it. Locking stuff behind walls just makes everyone dumber.
       </p>
-      <div class="badges">
-        <span class="badge"><span class="dot" style="background:var(--green)"></span><span data-i18n="badge1">Efficiency-focused</span></span>
-        <span class="badge"><span class="dot" style="background:var(--blue)"></span><span data-i18n="badge2">Looking for co-developers</span></span>
-        <span class="badge"><span class="dot" style="background:var(--orange)"></span><span data-i18n="badge3">Fueled by passion</span></span>
+
+      <div class="rf-badges">
+        <span class="rf-badge"><span class="rf-badge-dot" style="background:var(--rf-accent-mint)"></span><span data-i18n="badge1">open source or it didn't happen</span></span>
+        <span class="rf-badge"><span class="rf-badge-dot" style="background:var(--rf-accent-cyan)"></span><span data-i18n="badge2">powered by curiosity + caffeine</span></span>
+        <span class="rf-badge"><span class="rf-badge-dot" style="background:var(--rf-accent-amber)"></span><span data-i18n="badge3">ship fast, refactor later</span></span>
+      </div>
+
+      <div class="rf-hero-actions">
+        <a class="rf-btn rf-btn--primary" href="#projects" data-i18n="cta-projects">Explore Projects →</a>
+        <a class="rf-btn rf-btn--ghost" href="/blog" data-i18n="cta-blog">Read Blog</a>
+      </div>
+    </div>
+
+    <div class="rf-card rf-terminal-card" aria-label="Interactive terminal">
+      <div class="rf-terminal-bar">
+        <div class="rf-terminal-dots">
+          <span class="d1"></span><span class="d2"></span><span class="d3"></span>
+        </div>
+        <div class="rf-terminal-title">rafych@dev:~/portfolio — bash</div>
+      </div>
+      <div class="rf-terminal-body" id="rf-term-output">
+        <div class="rf-term-line"><span class="rf-term-prompt">rafych@dev</span>:<span class="rf-term-path">~</span>$ whoami</div>
+        <div class="rf-term-line" data-i18n="term-name">Danil, developer</div>
+        <div class="rf-term-line"><span class="rf-term-prompt">rafych@dev</span>:<span class="rf-term-path">~</span>$ cat mood.txt</div>
+        <div class="rf-term-line"><span class="rf-term-comment" data-i18n="term-mood"># same input, same output — no bugs, no cap</span></div>
+        <div class="rf-term-line"><span class="rf-term-accent">tip:</span> <span class="rf-term-comment" data-i18n="term-tip">type "help" or click a command below</span></div>
+      </div>
+      <div class="rf-terminal-hints">
+        <button type="button" class="rf-term-chip" data-term-cmd="ascii">ascii</button>
+        <button type="button" class="rf-term-chip" data-term-cmd="fx">fx</button>
+        <button type="button" class="rf-term-chip" data-term-cmd="stack">stack</button>
+        <button type="button" class="rf-term-chip" data-term-cmd="help">help</button>
+      </div>
+      <div class="rf-terminal-input-row">
+        <span class="rf-term-prompt mono">$</span>
+        <input type="text" id="rf-term-input" class="rf-terminal-input" autocomplete="off" spellcheck="false" data-i18n-placeholder="term-placeholder" placeholder="try: ascii, fx, help...">
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-head">
-      <h2 data-i18n="h-about">whoami</h2>
-      <div class="line"></div>
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="b1"></span><span class="b2"></span><span class="b3"></span>
-        <span class="fname">bash</span>
+  <section class="rf-section rf-reveal" id="stack">
+    <div class="rf-section-head">
+      <div class="rf-section-title-group">
+        <span class="rf-section-index">01 //</span>
+        <h2 data-i18n="h-stack">Stack</h2>
       </div>
-      <div class="terminal-body">
-        <div><span class="prompt">rafych@dev</span>:<span class="path">~</span>$ whoami</div>
-        <div><span data-i18n="term-name">Danil, developer</span></div>
-        <div style="margin-top:8px;"><span class="prompt">rafych@dev</span>:<span class="path">~</span>$ cat mood.txt</div>
-        <div><span class="comment"><span data-i18n="term-mood"># probably refactoring something that already worked fine</span></span></div>
-        <div style="margin-top:8px;"><span class="prompt">rafych@dev</span>:<span class="path">~</span>$ <span class="caret"></span></div>
+      <div class="rf-section-line"></div>
+    </div>
+    <div class="rf-stack-grid">
+      <div class="rf-card rf-skill-card">
+        <div class="rf-skill-top">
+          <span class="rf-skill-icon">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </span>
+          <span class="rf-skill-pct">100%</span>
+        </div>
+        <div class="rf-skill-name">HTML</div>
+        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:100%"></div></div>
+      </div>
+
+      <div class="rf-card rf-skill-card">
+        <div class="rf-skill-top">
+          <span class="rf-skill-icon" style="color:var(--rf-accent-amber);background:rgba(245,185,81,0.12);border-color:rgba(245,185,81,0.25);">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </span>
+          <span class="rf-skill-pct">90%</span>
+        </div>
+        <div class="rf-skill-name">JavaScript</div>
+        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:90%"></div></div>
+      </div>
+
+      <div class="rf-card rf-skill-card">
+        <div class="rf-skill-top">
+          <span class="rf-skill-icon" style="color:var(--rf-accent-violet);background:rgba(167,139,250,0.12);border-color:rgba(167,139,250,0.25);">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </span>
+          <span class="rf-skill-pct">85%</span>
+        </div>
+        <div class="rf-skill-name">CSS</div>
+        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:85%"></div></div>
+      </div>
+
+      <div class="rf-card rf-skill-card">
+        <div class="rf-skill-top">
+          <span class="rf-skill-icon" style="color:var(--rf-accent-blue);background:rgba(79,140,255,0.12);border-color:rgba(79,140,255,0.25);">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </span>
+          <span class="rf-skill-pct">80%</span>
+        </div>
+        <div class="rf-skill-name">PHP</div>
+        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:80%"></div></div>
+      </div>
+
+      <div class="rf-card rf-skill-card">
+        <div class="rf-skill-top">
+          <span class="rf-skill-icon" style="color:var(--rf-accent-mint);background:rgba(74,222,128,0.12);border-color:rgba(74,222,128,0.25);">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          </span>
+          <span class="rf-skill-pct">70%</span>
+        </div>
+        <div class="rf-skill-name">Linux</div>
+        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:70%"></div></div>
+      </div>
+
+      <div class="rf-card rf-skill-card">
+        <div class="rf-skill-top">
+          <span class="rf-skill-icon" style="color:var(--rf-accent-coral);background:rgba(251,113,133,0.12);border-color:rgba(251,113,133,0.25);">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </span>
+          <span class="rf-skill-pct">50%</span>
+        </div>
+        <div class="rf-skill-name" data-i18n="skill-network">Network</div>
+        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:50%"></div></div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-head">
-      <h2 data-i18n="h-stack">Stack</h2>
-      <div class="line"></div>
+  <section class="rf-section rf-reveal" id="projects">
+    <div class="rf-section-head">
+      <div class="rf-section-title-group">
+        <span class="rf-section-index">02 //</span>
+        <h2 data-i18n="h-projects">Projects</h2>
+      </div>
+      <div class="rf-section-line"></div>
     </div>
-    <div class="grid">
-      <div class="skill-card">
-        <span class="emoji">🧱</span>
-        <div class="name">HTML</div>
-        <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
-      </div>
-      <div class="skill-card">
-        <span class="emoji">🟨</span>
-        <div class="name">JavaScript</div>
-        <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
-      </div>
-      <div class="skill-card">
-        <span class="emoji">🎨</span>
-        <div class="name">CSS</div>
-        <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
-      </div>
-      <div class="skill-card">
-        <span class="emoji">🐘</span>
-        <div class="name">PHP</div>
-        <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
-      </div>
-      <div class="skill-card">
-        <span class="emoji">🐧</span>
-        <div class="name">Linux</div>
-        <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
-      </div>
-      <div class="skill-card">
-        <span class="emoji">🌐</span>
-        <div class="name" data-i18n="skill-network">Network</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head">
-      <h2 data-i18n="h-projects">Projects</h2>
-      <div class="line"></div>
-    </div>
-    <div id="projects-status" class="projects-status mono" data-i18n="proj-loading">Loading repositories from GitHub…</div>
+    <div id="projects-status" class="projects-status mono" data-i18n="proj-loading">Pulling the open, hackable stuff from GitHub…</div>
     <div class="projects" id="projects-grid"></div>
     <div class="projects-more-wrap">
-      <button type="button" id="projects-more" class="projects-more-btn mono" data-i18n="proj-more" style="display:none;">Show more</button>
+      <button type="button" id="projects-more" class="projects-more-btn mono" data-i18n="proj-more" style="display:none;">Show me more</button>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-head">
-      <h2 data-i18n="h-blog">Blog</h2>
-      <div class="line"></div>
+  <section class="rf-section rf-reveal" id="blog">
+    <div class="rf-section-head">
+      <div class="rf-section-title-group">
+        <span class="rf-section-index">03 //</span>
+        <h2 data-i18n="h-blog">Blog</h2>
+      </div>
+      <div class="rf-section-line"></div>
     </div>
     <div class="blog-list" id="blog-list">
       {% for post in site.posts limit:3 %}
       <a class="blog-item" href="{{ post.url | relative_url }}"><span class="blog-item-title">{{ post.title }}</span></a>
       {% else %}
-      <div class="blog-empty" id="blog-empty" data-i18n="blog-empty">No posts yet</div>
+      <div class="blog-empty" id="blog-empty" data-i18n="blog-empty">Nothing here yet</div>
       {% endfor %}
     </div>
     <div class="blog-cta">
-      <a class="btn-outline" href="/blog" id="blog-view-all" data-i18n="blog-view-all">View all posts →</a>
+      <a class="btn-outline" href="/blog" id="blog-view-all" data-i18n="blog-view-all">Browse all posts →</a>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-head">
-      <h2 data-i18n="h-contact">Get in touch</h2>
-      <div class="line"></div>
+  <section class="rf-section rf-reveal" id="contact">
+    <div class="rf-section-head">
+      <div class="rf-section-title-group">
+        <span class="rf-section-index">04 //</span>
+        <h2 data-i18n="h-contact">Reach me — encrypt it if you want</h2>
+      </div>
+      <div class="rf-section-line"></div>
     </div>
-    <div class="contact-grid">
-      <a class="contact-card" href="https://github.com/Rafych" target="_blank" rel="noopener noreferrer">
-        <div class="icon-tag purple-tag">🐙</div>
-        <div>
-          <div class="label">GitHub</div>
-          <div class="value mono">@Rafych</div>
+    <div class="rf-contact-grid">
+      <a class="rf-card rf-contact-card" href="https://github.com/Rafych" target="_blank" rel="noopener noreferrer">
+        <div class="icon-tag purple-tag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--rf-accent-violet)"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11.02 11.02 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        </div>
+        <div class="rf-contact-meta">
+          <div class="rf-contact-label">GitHub</div>
+          <div class="rf-contact-value">@Rafych</div>
         </div>
       </a>
-      <a class="contact-card" href="mailto:danilrafailovicivanov@proton.me">
-        <div class="icon-tag yellow-tag">✉️</div>
-        <div>
-          <div class="label" data-i18n="mail-label">Email</div>
-          <div class="value mono">danilrafailovicivanov@proton.me</div>
+
+      <a class="rf-card rf-contact-card" href="mailto:danilrafailovicivanov@proton.me">
+        <div class="icon-tag yellow-tag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rf-accent-amber)"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         </div>
+        <div class="rf-contact-meta">
+          <div class="rf-contact-label" data-i18n="mail-label">Email</div>
+          <div class="rf-contact-value">danilrafailovicivanov@proton.me</div>
+        </div>
+        <button type="button" class="rf-copy-btn" data-copy="danilrafailovicivanov@proton.me">COPY</button>
       </a>
-      <a class="contact-card" href="https://discord.gg/VBVY2tU8Ky" target="_blank" rel="noopener noreferrer">
-        <div class="icon-tag blue-tag">💬</div>
-        <div>
-          <div class="label" data-i18n="discord-label">Discord</div>
-          <div class="value mono">@Rafych_dev</div>
+
+      <a class="rf-card rf-contact-card" href="https://discord.gg/VBVY2tU8Ky" target="_blank" rel="noopener noreferrer">
+        <div class="icon-tag blue-tag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rf-accent-blue)"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <div class="rf-contact-meta">
+          <div class="rf-contact-label" data-i18n="discord-label">Discord</div>
+          <div class="rf-contact-value">@Rafych_dev</div>
         </div>
       </a>
     </div>
   </section>
+</main>
 
-</div>
-
-<footer>
+<footer class="rf-footer">
   <span data-i18n="footer">Made with</span> <span class="heart">♥</span> <span data-i18n="footer2">and way too much caffeine.</span>
 </footer>
 
 <script src="/assets/js/lang.js"></script>
 <script src="/assets/js/cache.js"></script>
 <script src="/assets/js/repos.js"></script>
+<script src="/assets/js/fx.js"></script>
 <script>
 const dict = {
   en: {
@@ -536,9 +303,13 @@ const dict = {
     badge1: "open source or it didn't happen",
     badge2: "powered by curiosity + caffeine",
     badge3: "ship fast, refactor later",
-    "h-about": "whoami",
+    "cta-projects": "Explore Projects →",
+    "cta-blog": "Read Blog",
+    "nav-contact": "Contact",
     "term-name": "Danil, developer",
     "term-mood": "# same input, same output — no bugs, no cap",
+    "term-tip": "type \"help\" or click a command below",
+    "term-placeholder": "try: ascii, fx, help...",
     "h-stack": "Stack",
     "skill-network": "Network",
     "h-projects": "Projects",
@@ -569,9 +340,13 @@ const dict = {
     badge1: "опенсорс — иначе не считово",
     badge2: "работает на любопытстве и кофеине",
     badge3: "сначала запускаю, потом причёсываю",
-    "h-about": "whoami",
+    "cta-projects": "Смотреть проекты →",
+    "cta-blog": "Читать блог",
+    "nav-contact": "Контакты",
     "term-name": "Данил, разработчик",
     "term-mood": "# один вход — один и тот же выход, без сюрпризов",
+    "term-tip": "введите \"help\" или нажмите кнопку ниже",
+    "term-placeholder": "попробуйте: ascii, fx, help...",
     "h-stack": "Стек",
     "skill-network": "Сети",
     "h-projects": "Проекты",
@@ -594,6 +369,7 @@ const dict = {
 };
 
 let currentLang = RafychLang.detect();
+const langBtn = document.getElementById('lang-toggle-btn');
 
 const repos = RafychRepos.createController({
   gridEl: document.getElementById('projects-grid'),
@@ -606,8 +382,23 @@ const repos = RafychRepos.createController({
   lang: () => currentLang
 });
 
-RafychLang.apply(dict[currentLang], currentLang);
+function syncLang() {
+  RafychLang.apply(dict[currentLang], currentLang);
+  if (langBtn) langBtn.textContent = currentLang.toUpperCase();
+  repos.render();
+}
+
+if (langBtn) {
+  langBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'ru' : 'en';
+    try { localStorage.setItem('lang', currentLang); } catch (e) {}
+    syncLang();
+  });
+}
+
+syncLang();
 repos.load();
+RafychFX.init({ loader: true, terminal: true, getLang: () => currentLang });
 </script>
 
 </body>
