@@ -3,54 +3,41 @@ layout: null
 title: "Home"
 description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working with HTML, CSS, JavaScript, PHP and Linux. Interested in networking, anonymization, hacking and AI."
 ---
+<!DOCTYPE html>
 <!--
-  Fonts:
+  Third-party resources used on this page
+
+  Fonts (served by Google Fonts, https://fonts.google.com — font files unmodified)
   - Google Sans
     Copyright (c) Google Inc.
     Licensed under the SIL Open Font License, Version 1.1
     https://fonts.google.com/specimen/Google+Sans
-    https://scripts.sil.org/OFL
-
   - Noto Sans JP
     Copyright (c) Google Inc.
     Licensed under the SIL Open Font License, Version 1.1
-    https://fonts.google.com/specimen/Noto+Sans+JP
-    https://scripts.sil.org/OFL
-
+    https://fonts.google.com/noto/specimen/Noto+Sans+JP
   - JetBrains Mono
     Copyright (c) JetBrains s.r.o.
     Licensed under the SIL Open Font License, Version 1.1
     https://fonts.google.com/specimen/JetBrains+Mono
-    https://scripts.sil.org/OFL
 
-  Fonts are loaded via Google Fonts (https://fonts.google.com), which serves
-  them under their respective open-source licenses. No modification has been
-  made to the font files themselves.
+  SIL Open Font License 1.1: https://openfontlicense.org
 -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090b">
 {% seo %}
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="/assets/css/design-system.css">
 </head>
 <body>
-
-<div id="rf-loader" class="rf-loader" role="status" aria-label="Loading">
-  <canvas id="rf-loader-canvas" aria-hidden="true"></canvas>
-  <div class="rf-loader-hud">
-    <div class="rf-loader-bar-track"><div class="rf-loader-bar-fill"></div></div>
-    <div class="rf-loader-meta">
-      <span>~/rafych</span>
-      <span class="rf-loader-pct">00%</span>
-    </div>
-  </div>
-</div>
 
 <header class="rf-header">
   <nav class="rf-nav" aria-label="Primary">
@@ -65,11 +52,9 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
       <a class="rf-nav-link" href="#contact" data-i18n="nav-contact">Contact</a>
     </div>
     <div class="rf-nav-controls">
-      <button type="button" class="rf-btn-min rf-hide-mobile" data-replay-intro title="Replay ASCII intro">INTRO</button>
-      <button type="button" class="rf-btn-min" id="lang-toggle-btn" title="Switch language">EN</button>
-      <a class="rf-btn-min is-solid" href="/blog" id="blog-nav-btn" data-i18n="blog-nav-btn">Blog</a>
-      <button type="button" class="rf-menu-toggle" id="rf-menu-toggle" aria-label="Menu" aria-expanded="false">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <a class="rf-btn-min is-solid" href="/blog" data-i18n="blog-nav-btn">Blog</a>
+      <button type="button" class="rf-menu-toggle" id="rf-menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="rf-mobile-drawer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       </button>
     </div>
   </nav>
@@ -80,26 +65,18 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
       <a class="rf-nav-link" href="#blog" data-i18n="h-blog">Blog</a>
       <a class="rf-nav-link" href="#contact" data-i18n="nav-contact">Contact</a>
     </div>
-    <div>
-      <button type="button" class="rf-btn-min" data-replay-intro>INTRO</button>
-    </div>
   </div>
 </header>
 
 <main class="rf-main">
   <section class="rf-hero">
     <div class="rf-hero-info">
-      <div class="rf-hero-id">
-        <img class="rf-avatar" src="/icon.png" alt="Rafych avatar">
-        <div>
-          <span class="rf-handle">@Rafych</span>
-          <h1 class="rf-hero-name" data-i18n="hero-name">Danil Rafailovich Ivanov</h1>
-        </div>
+      <div>
+        <span class="rf-handle">@Rafych</span>
+        <h1 class="rf-hero-name" data-i18n="hero-name">Danil Rafailovich Ivanov</h1>
       </div>
 
-      <p class="rf-hero-bio" data-i18n="tagline">
-        I think tech and knowledge should be free — open it, break it, rebuild it, learn from it. Locking stuff behind walls just makes everyone dumber.
-      </p>
+      <p class="rf-hero-bio" data-i18n="tagline">I think tech and knowledge should be free — open it, break it, rebuild it, learn from it.</p>
 
       <div class="rf-hero-tags">
         <span data-i18n="badge1">open source or it didn't happen</span>
@@ -108,34 +85,9 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
       </div>
     </div>
 
-    <div class="rf-ascii-stage" aria-label="Interactive ASCII art canvas">
-      <canvas id="rf-ascii-canvas"></canvas>
-      <div class="rf-ascii-bar">
-        <div class="rf-ascii-modes">
-          <button type="button" class="rf-mode-btn is-active" data-ascii-mode="torus">TORUS</button>
-          <button type="button" class="rf-mode-btn" data-ascii-mode="portrait">PORTRAIT</button>
-          <button type="button" class="rf-mode-btn" data-ascii-mode="wave">WAVE</button>
-        </div>
-        <span class="rf-ascii-hint">move / click</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="rf-cli" aria-label="Interactive terminal">
-    <div class="rf-cli-out" id="rf-cli-out">
-      <div class="rf-cli-line"><span class="rf-cli-prompt">rafych@dev</span>:<span class="rf-cli-path">~</span>$ whoami</div>
-      <div class="rf-cli-line" data-i18n="term-name">Danil, developer</div>
-      <div class="rf-cli-line"><span class="rf-cli-prompt">rafych@dev</span>:<span class="rf-cli-path">~</span>$ cat mood.txt</div>
-      <div class="rf-cli-line"><span class="rf-cli-dim" data-i18n="term-mood"># same input, same output — no bugs, no cap</span></div>
-    </div>
-    <div class="rf-cli-bar">
-      <span class="rf-cli-prompt">$</span>
-      <input type="text" id="rf-cli-input" class="rf-cli-input" autocomplete="off" spellcheck="false" data-i18n-placeholder="term-placeholder" placeholder="type help, torus, portrait, wave, ascii...">
-      <div class="rf-cli-cmds">
-        <button type="button" class="rf-cli-chip" data-term-cmd="portrait">portrait</button>
-        <button type="button" class="rf-cli-chip" data-term-cmd="wave">wave</button>
-        <button type="button" class="rf-cli-chip" data-term-cmd="ascii">ascii</button>
-        <button type="button" class="rf-cli-chip" data-term-cmd="help">help</button>
+    <div class="rf-ascii-stage">
+      <div class="rf-ascii-viewport">
+        <canvas id="rf-ascii-canvas" aria-label="ASCII portrait" role="img"></canvas>
       </div>
     </div>
   </section>
@@ -143,32 +95,31 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
   <section class="rf-section" id="stack">
     <div class="rf-sec-head">
       <h2 data-i18n="h-stack">Stack</h2>
-      <span class="rf-sec-meta">6 tools</span>
     </div>
     <div class="rf-stack-list">
       <div class="rf-stack-row">
         <span class="rf-stack-name">HTML</span>
-        <span class="rf-stack-meter">[<span class="fill">████████████████████</span>]<span class="pct">100%</span></span>
+        <span class="rf-stack-meter">[<span class="fill">████████████</span>]<span class="pct">100%</span></span>
       </div>
       <div class="rf-stack-row">
         <span class="rf-stack-name">JavaScript</span>
-        <span class="rf-stack-meter">[<span class="fill">██████████████████</span>░░]<span class="pct">90%</span></span>
+        <span class="rf-stack-meter">[<span class="fill">███████████</span>░]<span class="pct">90%</span></span>
       </div>
       <div class="rf-stack-row">
         <span class="rf-stack-name">CSS</span>
-        <span class="rf-stack-meter">[<span class="fill">█████████████████</span>░░░]<span class="pct">85%</span></span>
+        <span class="rf-stack-meter">[<span class="fill">██████████</span>░░]<span class="pct">85%</span></span>
       </div>
       <div class="rf-stack-row">
         <span class="rf-stack-name">PHP</span>
-        <span class="rf-stack-meter">[<span class="fill">████████████████</span>░░░░]<span class="pct">80%</span></span>
+        <span class="rf-stack-meter">[<span class="fill">██████████</span>░░]<span class="pct">80%</span></span>
       </div>
       <div class="rf-stack-row">
         <span class="rf-stack-name">Linux</span>
-        <span class="rf-stack-meter">[<span class="fill">██████████████</span>░░░░░░]<span class="pct">70%</span></span>
+        <span class="rf-stack-meter">[<span class="fill">████████</span>░░░░]<span class="pct">70%</span></span>
       </div>
       <div class="rf-stack-row">
         <span class="rf-stack-name" data-i18n="skill-network">Network</span>
-        <span class="rf-stack-meter">[<span class="fill">██████████</span>░░░░░░░░░░]<span class="pct">50%</span></span>
+        <span class="rf-stack-meter">[<span class="fill">██████</span>░░░░░░]<span class="pct">50%</span></span>
       </div>
     </div>
   </section>
@@ -176,70 +127,64 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
   <section class="rf-section" id="projects">
     <div class="rf-sec-head">
       <h2 data-i18n="h-projects">Projects</h2>
-      <span class="rf-sec-meta">github.com/Rafych</span>
     </div>
-    <div id="projects-status" class="projects-status mono" data-i18n="proj-loading">Pulling the open, hackable stuff from GitHub…</div>
+    <div id="projects-status" class="projects-status" data-i18n="proj-loading">Pulling the open, hackable stuff from GitHub…</div>
     <div class="projects" id="projects-grid"></div>
     <div class="projects-more-wrap">
-      <button type="button" id="projects-more" class="projects-more-btn mono" data-i18n="proj-more" style="display:none;">Show me more</button>
+      <button type="button" id="projects-more" class="projects-more-btn" style="display:none;">Show me more</button>
     </div>
   </section>
 
   <section class="rf-section" id="blog">
     <div class="rf-sec-head">
       <h2 data-i18n="h-blog">Blog</h2>
-      <span class="rf-sec-meta">/blog</span>
     </div>
-    <div class="blog-list" id="blog-list">
+    <div class="blog-list">
       {% for post in site.posts limit:3 %}
-      <a class="blog-item" href="{{ post.url | relative_url }}"><span class="blog-item-title">{{ post.title }}</span></a>
+      <a class="blog-item" href="{{ post.url | relative_url }}"><span class="blog-item-title">{{ post.title }}</span><span class="blog-item-date">{{ post.date | date: "%Y-%m-%d" }}</span></a>
       {% else %}
-      <div class="blog-empty" id="blog-empty" data-i18n="blog-empty">Nothing here yet</div>
+      <div class="blog-empty" data-i18n="blog-empty">Nothing here yet</div>
       {% endfor %}
     </div>
     <div class="blog-cta">
-      <a class="btn-outline" href="/blog" id="blog-view-all" data-i18n="blog-view-all">Browse all posts →</a>
+      <a class="btn-outline" href="/blog" data-i18n="blog-view-all">Browse all posts →</a>
     </div>
   </section>
 
   <section class="rf-section" id="contact">
     <div class="rf-sec-head">
       <h2 data-i18n="h-contact">Reach me — encrypt it if you want</h2>
-      <span class="rf-sec-meta">links</span>
     </div>
     <div class="rf-contact-grid">
       <a class="rf-contact-cell" href="https://github.com/Rafych" target="_blank" rel="noopener noreferrer">
-        <div class="rf-contact-meta">
-          <div class="rf-contact-label">GitHub</div>
-          <div class="rf-contact-value">@Rafych</div>
-        </div>
-        <span class="mono" style="color:var(--fg-dim);">↗</span>
+        <span class="rf-contact-meta">
+          <span class="rf-contact-label">GitHub</span>
+          <span class="rf-contact-value">@Rafych</span>
+        </span>
+        <span class="rf-contact-arrow" aria-hidden="true">↗</span>
       </a>
 
-      <a class="rf-contact-cell" href="mailto:danilrafailovicivanov@proton.me">
-        <div class="rf-contact-meta">
-          <div class="rf-contact-label" data-i18n="mail-label">Email</div>
-          <div class="rf-contact-value">danilrafailovicivanov@proton.me</div>
-        </div>
+      <div class="rf-contact-cell">
+        <a class="rf-contact-meta" href="mailto:danilrafailovicivanov@proton.me">
+          <span class="rf-contact-label" data-i18n="mail-label">Email</span>
+          <span class="rf-contact-value">danilrafailovicivanov@proton.me</span>
+        </a>
         <button type="button" class="rf-copy-btn" data-copy="danilrafailovicivanov@proton.me">COPY</button>
-      </a>
+      </div>
 
       <a class="rf-contact-cell" href="https://discord.gg/VBVY2tU8Ky" target="_blank" rel="noopener noreferrer">
-        <div class="rf-contact-meta">
-          <div class="rf-contact-label" data-i18n="discord-label">Discord</div>
-          <div class="rf-contact-value">@Rafych_dev</div>
-        </div>
-        <span class="mono" style="color:var(--fg-dim);">↗</span>
+        <span class="rf-contact-meta">
+          <span class="rf-contact-label" data-i18n="discord-label">Discord</span>
+          <span class="rf-contact-value">@Rafych_dev</span>
+        </span>
+        <span class="rf-contact-arrow" aria-hidden="true">↗</span>
       </a>
     </div>
   </section>
 </main>
 
 <footer class="rf-footer">
-  <div class="rf-footer-inner">
-    <span><span data-i18n="footer">Made with</span> <span class="heart">♥</span> <span data-i18n="footer2">and way too much caffeine.</span></span>
-    <span>EOF // rafych.github.io</span>
-  </div>
+  <span data-i18n="footer">Made with</span> <span class="heart">♥</span> <span data-i18n="footer2">and way too much caffeine.</span>
 </footer>
 
 <script src="/assets/js/lang.js"></script>
@@ -260,9 +205,6 @@ var dict = {
     badge2: "powered by curiosity + caffeine",
     badge3: "ship fast, refactor later",
     "nav-contact": "Contact",
-    "term-name": "Danil, developer",
-    "term-mood": "# same input, same output — no bugs, no cap",
-    "term-placeholder": "type help, torus, portrait, wave, ascii...",
     "h-stack": "Stack",
     "skill-network": "Network",
     "h-projects": "Projects",
@@ -294,9 +236,6 @@ var dict = {
     badge2: "работает на любопытстве и кофеине",
     badge3: "сначала запускаю, потом причёсываю",
     "nav-contact": "Контакты",
-    "term-name": "Данил, разработчик",
-    "term-mood": "# один вход — один и тот же выход, без сюрпризов",
-    "term-placeholder": "введите help, torus, portrait, wave, ascii...",
     "h-stack": "Стек",
     "skill-network": "Сети",
     "h-projects": "Проекты",
@@ -319,7 +258,7 @@ var dict = {
 };
 
 var currentLang = RafychLang.detect();
-var langBtn = document.getElementById('lang-toggle-btn');
+var getLang = function () { return currentLang; };
 
 var repos = RafychRepos.createController({
   gridEl: document.getElementById('projects-grid'),
@@ -329,26 +268,12 @@ var repos = RafychRepos.createController({
   excludeNames: ['rafych.github.io', 'rafych'],
   pageSize: 6,
   dict: function () { return dict[currentLang]; },
-  lang: function () { return currentLang; }
+  lang: getLang
 });
 
-function syncLang() {
-  RafychLang.apply(dict[currentLang], currentLang);
-  if (langBtn) langBtn.textContent = currentLang.toUpperCase();
-  repos.render();
-}
-
-if (langBtn) {
-  langBtn.addEventListener('click', function () {
-    currentLang = currentLang === 'en' ? 'ru' : 'en';
-    try { localStorage.setItem('lang', currentLang); } catch (e) {}
-    syncLang();
-  });
-}
-
-syncLang();
+RafychLang.apply(dict[currentLang], currentLang);
 repos.load();
-RafychFX.init({ loader: true, asciiStage: true, terminal: true, getLang: function () { return currentLang; } });
+RafychFX.init({ portrait: true });
 </script>
 
 </body>
