@@ -259,24 +259,6 @@ window.RafychFX = (function () {
     resize();
   }
 
-  function initNav() {
-    var toggle = document.getElementById('rf-menu-toggle');
-    var drawer = document.getElementById('rf-mobile-drawer');
-    if (toggle && drawer) {
-      var set = function (open) {
-        drawer.classList.toggle('is-open', open);
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      };
-      toggle.addEventListener('click', function () { set(!drawer.classList.contains('is-open')); });
-      Array.prototype.forEach.call(drawer.querySelectorAll('a, button'), function (el) {
-        el.addEventListener('click', function () { set(false); });
-      });
-      window.addEventListener('resize', function () {
-        if (window.innerWidth > 720) set(false);
-      });
-    }
-  }
-
   function initCopy() {
     each('[data-copy]', function (btn) {
       btn.addEventListener('click', function () { copy(btn.getAttribute('data-copy')); });
@@ -286,7 +268,6 @@ window.RafychFX = (function () {
   return {
     init: function (opts) {
       opts = opts || {};
-      initNav();
       initCopy();
       if (opts.portrait) initPortrait();
     }
