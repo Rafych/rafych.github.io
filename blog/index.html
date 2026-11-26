@@ -4,11 +4,35 @@ title: "All posts"
 description: Browse all Rafych posts in one place.
 permalink: /blog/
 ---
+<!--
+  Fonts:
+  - Google Sans
+    Copyright (c) Google Inc.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Google+Sans
+    https://scripts.sil.org/OFL
+
+  - Noto Sans JP
+    Copyright (c) Google Inc.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Noto+Sans+JP
+    https://scripts.sil.org/OFL
+
+  - JetBrains Mono
+    Copyright (c) JetBrains s.r.o.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/JetBrains+Mono
+    https://scripts.sil.org/OFL
+
+  Fonts are loaded via Google Fonts (https://fonts.google.com), which serves
+  them under their respective open-source licenses. No modification has been
+  made to the font files themselves.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 {% seo %}
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,18 +42,15 @@ permalink: /blog/
 </head>
 <body>
 
-<canvas id="rf-bg-canvas" aria-hidden="true"></canvas>
-
-<header class="rf-nav-wrap">
+<header class="rf-header">
   <nav class="rf-nav" aria-label="Primary">
     <a class="rf-brand" href="/">
-      <span class="rf-brand-orb"></span>
-      <span class="rf-brand-path">~/rafych/<span>blog</span></span>
+      <span>~/rafych/blog</span>
+      <span class="rf-brand-cursor" aria-hidden="true"></span>
     </a>
     <div class="rf-nav-controls">
-      <button type="button" class="rf-chip-btn rf-hide-mobile" data-fx-toggle title="Switch visual mode">FX: LIGHT</button>
-      <button type="button" class="rf-chip-btn" id="lang-toggle-btn" title="Switch language">EN</button>
-      <a class="rf-chip-btn is-primary" href="/" id="home-btn" data-i18n="home">Home</a>
+      <button type="button" class="rf-btn-min" id="lang-toggle-btn" title="Switch language">EN</button>
+      <a class="rf-btn-min is-solid" href="/" id="home-btn" data-i18n="home">Home</a>
     </div>
   </nav>
 </header>
@@ -47,18 +68,21 @@ permalink: /blog/
 </main>
 
 <footer class="rf-footer">
-  <span id="footer-year">© 2026 Rafych</span> — <span id="footer-made" data-i18n="made">made with</span> <span class="heart">♥</span>
+  <div class="rf-footer-inner">
+    <span><span id="footer-year">© 2026 Rafych</span> — <span id="footer-made" data-i18n="made">made with</span> <span class="heart">♥</span></span>
+    <span>EOF // blog</span>
+  </div>
 </footer>
 
 <script src="/assets/js/lang.js"></script>
 <script src="/assets/js/blog-posts.js"></script>
 <script src="/assets/js/fx.js"></script>
 <script>
-const C = {
+var C = {
   en: {
     title: 'All posts | Rafych',
     home: 'Home',
-    pageLabel: 'Blog // Archive',
+    pageLabel: 'Blog',
     pageTitle: 'Everything, unlocked',
     searchPlaceholder: 'Dig through the archive…',
     empty: 'Nothing here yet.\nKnowledge takes time to brew.',
@@ -71,7 +95,7 @@ const C = {
   ru: {
     title: 'Все посты | Rafych',
     home: 'Главная',
-    pageLabel: 'Блог // Архив',
+    pageLabel: 'Блог',
     pageTitle: 'Всё в открытом доступе',
     searchPlaceholder: 'Копаемся в архиве…',
     empty: 'Пока ничего нет.\nЗнаниям нужно время, чтобы созреть.',
@@ -83,17 +107,17 @@ const C = {
   }
 };
 
-let currentLang = RafychLang.detect();
-const langBtn = document.getElementById('lang-toggle-btn');
+var currentLang = RafychLang.detect();
+var langBtn = document.getElementById('lang-toggle-btn');
 
-const postList = RafychBlog.createListController({
+var postList = RafychBlog.createListController({
   listEl: document.getElementById('blog-list'),
   pagEl: document.getElementById('search-pagination'),
   pageSize: 10,
-  dict: () => C[currentLang]
+  dict: function () { return C[currentLang]; }
 });
 
-document.getElementById('search-input').addEventListener('input', (e) => {
+document.getElementById('search-input').addEventListener('input', function (e) {
   postList.setQuery(e.target.value);
 });
 
@@ -104,7 +128,7 @@ function syncLang() {
 }
 
 if (langBtn) {
-  langBtn.addEventListener('click', () => {
+  langBtn.addEventListener('click', function () {
     currentLang = currentLang === 'en' ? 'ru' : 'en';
     try { localStorage.setItem('lang', currentLang); } catch (e) {}
     syncLang();
