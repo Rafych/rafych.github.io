@@ -1,43 +1,42 @@
+<!DOCTYPE html>
 <!--
-  Fonts & Libraries:
+  Third-party resources used on this page
+
+  Fonts (served by Google Fonts, https://fonts.google.com — font files unmodified)
   - Google Sans
     Copyright (c) Google Inc.
     Licensed under the SIL Open Font License, Version 1.1
     https://fonts.google.com/specimen/Google+Sans
-    https://scripts.sil.org/OFL
-
   - Noto Sans JP
     Copyright (c) Google Inc.
     Licensed under the SIL Open Font License, Version 1.1
-    https://fonts.google.com/specimen/Noto+Sans+JP
-    https://scripts.sil.org/OFL
-
+    https://fonts.google.com/noto/specimen/Noto+Sans+JP
   - JetBrains Mono
     Copyright (c) JetBrains s.r.o.
     Licensed under the SIL Open Font License, Version 1.1
     https://fonts.google.com/specimen/JetBrains+Mono
-    https://scripts.sil.org/OFL
 
-  Fonts are loaded via Google Fonts (https://fonts.google.com), which serves
-  them under their respective open-source licenses. No modification has been
-  made to the font files themselves.
+  SIL Open Font License 1.1: https://openfontlicense.org
 
-  - MathJax
+  Libraries
+  - MathJax 3 (loaded from jsDelivr, https://www.jsdelivr.com)
     Copyright (c) 2009-2024 The MathJax Consortium
     Licensed under the Apache License, Version 2.0
     https://www.mathjax.org
     https://github.com/mathjax/MathJax/blob/master/LICENSE
 -->
-<!DOCTYPE html>
 <html lang="{{ page.lang | default: 'en' }}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090b">
 {% seo %}
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="/assets/css/design-system.css">
 <script>
 window.MathJax = {
@@ -45,11 +44,10 @@ window.MathJax = {
     inlineMath: [['$', '$'], ['\\(', '\\)']],
     displayMath: [['$$', '$$'], ['\\[', '\\]']],
     processEscapes: true
-  },
-  svg: { fontCache: 'global' }
+  }
 };
 </script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -60,66 +58,60 @@ window.MathJax = {
       <span class="rf-brand-cursor" aria-hidden="true"></span>
     </a>
     <div class="rf-nav-controls">
-      <button type="button" class="rf-btn-min" id="lang-toggle-btn" title="Switch language">EN</button>
-      <a class="rf-btn-min is-solid" href="/blog" id="blog-btn" data-i18n="blog">Blog</a>
+      <a class="rf-btn-min" href="/" data-i18n="home">Home</a>
+      <a class="rf-btn-min is-solid" href="/blog" data-i18n="blog">Blog</a>
     </div>
   </nav>
 </header>
 
 <main class="rf-main rf-main--narrow">
   <article class="post-article">
-    <p class="rf-page-label" id="page-label" data-i18n="pageLabel">Blog</p>
+    <p class="rf-page-label" data-i18n="pageLabel">Blog</p>
     <h1 class="rf-page-title">{{ page.title }}</h1>
-    <p class="post-date">{{ page.date | date: "%Y-%m-%d" }}</p>
+    <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time></p>
     <div class="post-content">
       {{ content }}
     </div>
   </article>
 
   {% if page.previous or page.next %}
-  <div class="post-nav">
+  <nav class="post-nav" aria-label="Posts">
     {% if page.previous %}
-    <a href="{{ page.previous.url }}">
-      <span class="post-nav-label" id="post-nav-prev-label">Prev</span>
+    <a href="{{ page.previous.url | relative_url }}">
+      <span class="post-nav-label" data-i18n="prevLabel">Prev</span>
       <span class="post-nav-title">{{ page.previous.title }}</span>
     </a>
     {% endif %}
     {% if page.next %}
-    <a href="{{ page.next.url }}" class="post-nav-next">
-      <span class="post-nav-label" id="post-nav-next-label">Next</span>
+    <a href="{{ page.next.url | relative_url }}" class="post-nav-next">
+      <span class="post-nav-label" data-i18n="nextLabel">Next</span>
       <span class="post-nav-title">{{ page.next.title }}</span>
     </a>
     {% endif %}
-  </div>
+  </nav>
   {% endif %}
 
   <div class="more-posts">
-    <p class="more-posts-label" id="more-posts-label" data-i18n="morePostsLabel">More posts</p>
+    <p class="more-posts-label" data-i18n="morePostsLabel">More posts</p>
     <div class="search-box">
-      <input type="text" class="search-input" id="search-input" data-i18n-placeholder="searchPlaceholder" placeholder="Search...">
+      <input type="search" class="search-input" id="search-input" aria-label="Search posts" data-i18n-placeholder="searchPlaceholder" placeholder="Search...">
     </div>
-    <div class="blog-list" id="blog-list">
-      <div class="blog-empty" id="blog-loading">Loading...</div>
-    </div>
+    <div class="blog-list" id="blog-list"></div>
     <div class="search-pagination" id="search-pagination" style="display:none;"></div>
   </div>
 </main>
 
 <footer class="rf-footer">
-  <div class="rf-footer-inner">
-    <span><span id="footer-year">© 2026 Rafych</span> — <span data-i18n="footer">made with</span> <span class="heart">♥</span></span>
-    <span>EOF // post</span>
-  </div>
+  <span id="footer-year">© Rafych</span> — <span data-i18n="footer">made with</span> <span class="heart">♥</span>
 </footer>
 
 <script src="/assets/js/lang.js"></script>
 <script src="/assets/js/blog-posts.js"></script>
 <script src="/assets/js/fx.js"></script>
 <script>
-var PAGE_LANG = {{ page.lang | default: 'en' | jsonify }};
-
 var C = {
   en: {
+    home: 'Home',
     blog: 'Blog',
     pageLabel: 'Blog',
     morePostsLabel: 'More, free to take',
@@ -134,6 +126,7 @@ var C = {
     footer: 'made with'
   },
   ru: {
+    home: 'Главная',
     blog: 'Блог',
     pageLabel: 'Блог',
     morePostsLabel: 'Ещё, и всё бесплатно',
@@ -149,43 +142,22 @@ var C = {
   }
 };
 
-var currentLang = RafychLang.detect(PAGE_LANG);
-var langBtn = document.getElementById('lang-toggle-btn');
-var CURRENT_URL = {{ page.url | jsonify }};
+var currentLang = RafychLang.detect({{ page.lang | default: 'en' | jsonify }});
 
 var postList = RafychBlog.createListController({
   listEl: document.getElementById('blog-list'),
   pagEl: document.getElementById('search-pagination'),
   pageSize: 10,
   defaultLimit: 5,
-  excludeUrl: CURRENT_URL,
+  excludeUrl: {{ page.url | relative_url | jsonify }},
   dict: function () { return C[currentLang]; }
 });
-
-function applyLang() {
-  var d = C[currentLang];
-  RafychLang.apply(d, currentLang);
-  if (langBtn) langBtn.textContent = currentLang.toUpperCase();
-  var prevLabelEl = document.getElementById('post-nav-prev-label');
-  if (prevLabelEl) prevLabelEl.textContent = d.prevLabel;
-  var nextLabelEl = document.getElementById('post-nav-next-label');
-  if (nextLabelEl) nextLabelEl.textContent = d.nextLabel;
-  postList.render();
-}
-
-if (langBtn) {
-  langBtn.addEventListener('click', function () {
-    currentLang = currentLang === 'en' ? 'ru' : 'en';
-    try { localStorage.setItem('lang', currentLang); } catch (e) {}
-    applyLang();
-  });
-}
 
 document.getElementById('search-input').addEventListener('input', function (e) {
   postList.setQuery(e.target.value);
 });
 
-applyLang();
+RafychLang.apply(C[currentLang], currentLang);
 postList.load();
 document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear() + ' Rafych';
 RafychFX.init();
