@@ -1,8 +1,38 @@
+<!--
+  Fonts & Libraries:
+  - Google Sans
+    Copyright (c) Google Inc.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Google+Sans
+    https://scripts.sil.org/OFL
+
+  - Noto Sans JP
+    Copyright (c) Google Inc.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Noto+Sans+JP
+    https://scripts.sil.org/OFL
+
+  - JetBrains Mono
+    Copyright (c) JetBrains s.r.o.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/JetBrains+Mono
+    https://scripts.sil.org/OFL
+
+  Fonts are loaded via Google Fonts (https://fonts.google.com), which serves
+  them under their respective open-source licenses. No modification has been
+  made to the font files themselves.
+
+  - MathJax
+    Copyright (c) 2009-2024 The MathJax Consortium
+    Licensed under the Apache License, Version 2.0
+    https://www.mathjax.org
+    https://github.com/mathjax/MathJax/blob/master/LICENSE
+-->
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: 'en' }}">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 {% seo %}
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,10 +55,10 @@ window.MathJax = {
 
 <canvas id="rf-bg-canvas" aria-hidden="true"></canvas>
 
-<header class="rf-nav-wrap">
+<header class="rf-header">
   <nav class="rf-nav" aria-label="Primary">
     <a class="rf-brand" href="/">
-      <span class="rf-brand-orb"></span>
+      <span class="rf-brand-dot"></span>
       <span class="rf-brand-path">~/rafych/<span>blog</span></span>
     </a>
     <div class="rf-nav-controls">
@@ -86,12 +116,12 @@ window.MathJax = {
 <script src="/assets/js/blog-posts.js"></script>
 <script src="/assets/js/fx.js"></script>
 <script>
-const PAGE_LANG = {{ page.lang | default: 'en' | jsonify }};
+var PAGE_LANG = {{ page.lang | default: 'en' | jsonify }};
 
-const C = {
+var C = {
   en: {
     blog: 'Blog',
-    pageLabel: 'Blog // Post',
+    pageLabel: 'Blog',
     morePostsLabel: 'More, free to take',
     searchPlaceholder: 'Dig through the archive…',
     empty: 'Nothing here yet.\nKnowledge takes time to brew.',
@@ -105,7 +135,7 @@ const C = {
   },
   ru: {
     blog: 'Блог',
-    pageLabel: 'Блог // Пост',
+    pageLabel: 'Блог',
     morePostsLabel: 'Ещё, и всё бесплатно',
     searchPlaceholder: 'Копаемся в архиве…',
     empty: 'Пока ничего нет.\nЗнаниям нужно время, чтобы созреть.',
@@ -119,39 +149,39 @@ const C = {
   }
 };
 
-let currentLang = RafychLang.detect(PAGE_LANG);
-const langBtn = document.getElementById('lang-toggle-btn');
-const CURRENT_URL = {{ page.url | jsonify }};
+var currentLang = RafychLang.detect(PAGE_LANG);
+var langBtn = document.getElementById('lang-toggle-btn');
+var CURRENT_URL = {{ page.url | jsonify }};
 
-const postList = RafychBlog.createListController({
+var postList = RafychBlog.createListController({
   listEl: document.getElementById('blog-list'),
   pagEl: document.getElementById('search-pagination'),
   pageSize: 10,
   defaultLimit: 5,
   excludeUrl: CURRENT_URL,
-  dict: () => C[currentLang]
+  dict: function () { return C[currentLang]; }
 });
 
 function applyLang() {
-  const d = C[currentLang];
+  var d = C[currentLang];
   RafychLang.apply(d, currentLang);
   if (langBtn) langBtn.textContent = currentLang.toUpperCase();
-  const prevLabelEl = document.getElementById('post-nav-prev-label');
+  var prevLabelEl = document.getElementById('post-nav-prev-label');
   if (prevLabelEl) prevLabelEl.textContent = d.prevLabel;
-  const nextLabelEl = document.getElementById('post-nav-next-label');
+  var nextLabelEl = document.getElementById('post-nav-next-label');
   if (nextLabelEl) nextLabelEl.textContent = d.nextLabel;
   postList.render();
 }
 
 if (langBtn) {
-  langBtn.addEventListener('click', () => {
+  langBtn.addEventListener('click', function () {
     currentLang = currentLang === 'en' ? 'ru' : 'en';
     try { localStorage.setItem('lang', currentLang); } catch (e) {}
     applyLang();
   });
 }
 
-document.getElementById('search-input').addEventListener('input', (e) => {
+document.getElementById('search-input').addEventListener('input', function (e) {
   postList.setQuery(e.target.value);
 });
 
