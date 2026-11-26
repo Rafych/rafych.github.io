@@ -53,24 +53,21 @@ window.MathJax = {
 </head>
 <body>
 
-<canvas id="rf-bg-canvas" aria-hidden="true"></canvas>
-
 <header class="rf-header">
   <nav class="rf-nav" aria-label="Primary">
     <a class="rf-brand" href="/">
-      <span class="rf-brand-dot"></span>
-      <span class="rf-brand-path">~/rafych/<span>blog</span></span>
+      <span>~/rafych/blog</span>
+      <span class="rf-brand-cursor" aria-hidden="true"></span>
     </a>
     <div class="rf-nav-controls">
-      <button type="button" class="rf-chip-btn rf-hide-mobile" data-fx-toggle title="Switch visual mode">FX: LIGHT</button>
-      <button type="button" class="rf-chip-btn" id="lang-toggle-btn" title="Switch language">EN</button>
-      <a class="rf-chip-btn is-primary" href="/blog" id="blog-btn" data-i18n="blog">Blog</a>
+      <button type="button" class="rf-btn-min" id="lang-toggle-btn" title="Switch language">EN</button>
+      <a class="rf-btn-min is-solid" href="/blog" id="blog-btn" data-i18n="blog">Blog</a>
     </div>
   </nav>
 </header>
 
 <main class="rf-main rf-main--narrow">
-  <article class="rf-card post-article">
+  <article class="post-article">
     <p class="rf-page-label" id="page-label" data-i18n="pageLabel">Blog</p>
     <h1 class="rf-page-title">{{ page.title }}</h1>
     <p class="post-date">{{ page.date | date: "%Y-%m-%d" }}</p>
@@ -109,7 +106,10 @@ window.MathJax = {
 </main>
 
 <footer class="rf-footer">
-  <span id="footer-year">© 2026 Rafych</span> — <span data-i18n="footer">made with</span> <span class="heart">♥</span>
+  <div class="rf-footer-inner">
+    <span><span id="footer-year">© 2026 Rafych</span> — <span data-i18n="footer">made with</span> <span class="heart">♥</span></span>
+    <span>EOF // post</span>
+  </div>
 </footer>
 
 <script src="/assets/js/lang.js"></script>
