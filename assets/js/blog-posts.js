@@ -1,82 +1,81 @@
 window.RafychBlog = (function () {
-  function fetchAllPosts() {
-    return fetch('/search.json', { cache: 'no-store' })
-      .then(function (res) {
-        if (!res.ok) return [];
-        return res.json();
-      })
-      .then(function (data) {
-        return Array.isArray(data) ? data.map(function (p) { return { name: p.title, url: p.url }; }) : [];
-      })
-      .catch(function () {
-        return [];
-      });
+  var ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  var request = null;
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ESC[c]; });
   }
 
-  function createListController(opts) {
-    var listEl = opts.listEl;
-    var pagEl = opts.pagEl;
-    var pageSize = opts.pageSize || 10;
-    var defaultLimit = opts.defaultLimit || null;
-    var excludeUrl = opts.excludeUrl || null;
-    var getDict = opts.dict;
+  function fetchAllPosts() {
+    if (!request) {
+      request = fetch('/search.json', { cache: 'no-cache' })
+        .then(function (res) { return res.ok ? res.json() : []; })
+        .then(function (data) {
+          return Array.isArray(data) ? data.map(function (p) { return { name: p.title || '', url: p.url, date: p.date || '' }; }) : [];
+        })
+        .catch(function () { return []; });
+    }
+    return request;
+  }
 
-    var posts = [];
+  function createListController(o) {
+    var pageSize = o.pageSize || 10;
+    var posts = null;
     var query = '';
     var page = 0;
 
     function itemHtml(p) {
-      return '<a class="blog-item" href="' + p.url + '"><span class="blog-item-title">' + p.name + '</span></a>';
+      return '<a class="blog-item" href="' + esc(p.url) + '">' +
+        '<span class="blog-item-title">' + esc(p.name) + '</span>' +
+        (p.date ? '<span class="blog-item-date">' + esc(p.date) + '</span>' : '') +
+      '</a>';
+    }
+
+    function pagButton(label, delta) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = label;
+      b.addEventListener('click', function () {
+        page += delta;
+        render();
+      });
+      return b;
     }
 
     function render() {
-      var d = getDict();
-      var pool = excludeUrl ? posts.filter(function (p) { return p.url !== excludeUrl; }) : posts;
+      var d = o.dict();
+      if (!posts) {
+        o.listEl.innerHTML = '<div class="blog-empty">' + esc(d.loading) + '</div>';
+        return;
+      }
       var q = query.toLowerCase();
-      var filtered = q ? pool.filter(function (p) { return p.name.toLowerCase().includes(q); }) : pool;
+      var pool = o.excludeUrl ? posts.filter(function (p) { return p.url !== o.excludeUrl; }) : posts;
+      var list = q ? pool.filter(function (p) { return p.name.toLowerCase().indexOf(q) !== -1; }) : pool;
+      var paginate = !!q || !o.defaultLimit;
 
-      if (!filtered.length) {
-        listEl.innerHTML = '<div class="blog-empty">' + (q ? d.noResults : d.empty) + '</div>';
-        if (pagEl) { pagEl.style.display = 'none'; pagEl.innerHTML = ''; }
+      if (o.pagEl) {
+        o.pagEl.innerHTML = '';
+        o.pagEl.style.display = 'none';
+      }
+
+      if (!list.length) {
+        o.listEl.innerHTML = '<div class="blog-empty">' + esc(q ? d.noResults : d.empty) + '</div>';
         return;
       }
 
-      var items, showPagination;
-      if (!q && defaultLimit) {
-        items = filtered.slice(0, defaultLimit);
-        showPagination = false;
-      } else {
-        var start = page * pageSize;
-        items = filtered.slice(start, start + pageSize);
-        showPagination = true;
-      }
+      var start = paginate ? page * pageSize : 0;
+      var items = list.slice(start, start + (paginate ? pageSize : o.defaultLimit));
+      o.listEl.innerHTML = items.map(itemHtml).join('');
 
-      listEl.innerHTML = items.map(itemHtml).join('');
-
-      if (!pagEl) return;
-      if (!showPagination) {
-        pagEl.style.display = 'none';
-        pagEl.innerHTML = '';
-        return;
-      }
-
-      var start2 = page * pageSize;
-      var hasPrev = page > 0;
-      var hasNext = start2 + pageSize < filtered.length;
-      var html = '';
-      if (hasPrev) html += '<button id="search-prev-btn">' + d.prevBtn + '</button>';
-      if (hasNext) html += '<button id="search-next-btn">' + d.nextBtn + '</button>';
-      pagEl.innerHTML = html;
-      pagEl.style.display = html ? 'flex' : 'none';
-
-      if (hasPrev) document.getElementById('search-prev-btn').addEventListener('click', function () { page--; render(); });
-      if (hasNext) document.getElementById('search-next-btn').addEventListener('click', function () { page++; render(); });
+      if (!paginate || !o.pagEl) return;
+      if (page > 0) o.pagEl.appendChild(pagButton(d.prevBtn, -1));
+      if (start + pageSize < list.length) o.pagEl.appendChild(pagButton(d.nextBtn, 1));
+      if (o.pagEl.firstChild) o.pagEl.style.display = '';
     }
 
     return {
       load: function () {
-        var d = getDict();
-        listEl.innerHTML = '<div class="blog-empty">' + d.loading + '</div>';
+        render();
         return fetchAllPosts().then(function (data) {
           posts = data;
           page = 0;
@@ -92,8 +91,5 @@ window.RafychBlog = (function () {
     };
   }
 
-  return {
-    fetchAllPosts: fetchAllPosts,
-    createListController: createListController
-  };
+  return { fetchAllPosts: fetchAllPosts, createListController: createListController };
 })();
