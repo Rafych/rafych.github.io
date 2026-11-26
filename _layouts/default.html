@@ -28,7 +28,7 @@
 <html lang="{{ page.lang | default: 'en' }}">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#08090b">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="icon" type="image/png" href="/icon.png">
@@ -60,12 +60,6 @@ window.MathJax = {
       <span>~/rafych/blog</span>
       <span class="rf-brand-cursor" aria-hidden="true"></span>
     </a>
-    <div class="rf-nav-links">
-      <a class="rf-nav-link" href="/#stack" data-i18n="h-stack">Stack</a>
-      <a class="rf-nav-link" href="/#projects" data-i18n="h-projects">Projects</a>
-      <a class="rf-nav-link" href="/blog" data-i18n="h-blog">Blog</a>
-      <a class="rf-nav-link" href="/#contact" data-i18n="nav-contact">Contact</a>
-    </div>
     <div class="rf-nav-controls">
       <a class="rf-btn-min is-solid" href="/blog" data-i18n="blog">Blog</a>
     </div>
@@ -120,10 +114,6 @@ window.MathJax = {
 var C = {
   en: {
     blog: 'Blog',
-    'h-stack': 'Stack',
-    'h-projects': 'Projects',
-    'h-blog': 'Blog',
-    'nav-contact': 'Contact',
     pageLabel: 'Blog',
     morePostsLabel: 'More, free to take',
     searchPlaceholder: 'Dig through the archive…',
@@ -138,10 +128,6 @@ var C = {
   },
   ru: {
     blog: 'Блог',
-    'h-stack': 'Стек',
-    'h-projects': 'Проекты',
-    'h-blog': 'Блог',
-    'nav-contact': 'Контакты',
     pageLabel: 'Блог',
     morePostsLabel: 'Ещё, и всё бесплатно',
     searchPlaceholder: 'Копаемся в архиве…',
