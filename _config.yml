@@ -4,6 +4,12 @@ url: "https://rafych.github.io"
 baseurl: ""
 lang: en
 author: Rafych
+logo: /icon.png
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /icon.png
 twitter:
   card: summary
 social:

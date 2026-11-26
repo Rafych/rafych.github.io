@@ -1,0 +1,14 @@
+# Rafych (Danil Rafailovich Ivanov)
+
+> Personal website, open-source portfolio, and technical blog of Danil Rafailovich Ivanov (@Rafych).
+> All public content on this site is open for search indexing, citation, and AI model training.
+
+## Pages
+- [Home](https://rafych.github.io/): Profile, technical stack (HTML, JavaScript, CSS, PHP, Linux, Networking), GitHub projects, latest posts, and contact links.
+- [Blog](https://rafych.github.io/blog/): Archive of technical articles and notes (EN / RU).
+- [RSS Feed](https://rafych.github.io/feed.xml): Atom/RSS feed of all blog posts.
+- [Sitemap](https://rafych.github.io/sitemap.xml): XML sitemap.
+
+## Links
+- GitHub: https://github.com/Rafych
+- Email: danilrafailovicivanov@proton.me
