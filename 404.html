@@ -39,24 +39,28 @@ permalink: /404.html
 </head>
 <body>
 
-<canvas id="rf-bg-canvas" aria-hidden="true"></canvas>
-
 <header class="rf-header">
   <nav class="rf-nav" aria-label="Primary">
     <a class="rf-brand" href="/">
-      <span class="rf-brand-dot"></span>
-      <span class="rf-brand-path">~/rafych/<span>404</span></span>
+      <span>~/rafych/404</span>
+      <span class="rf-brand-cursor" aria-hidden="true"></span>
     </a>
     <div class="rf-nav-controls">
-      <button type="button" class="rf-chip-btn rf-hide-mobile" data-fx-toggle title="Switch visual mode">FX: LIGHT</button>
-      <a class="rf-chip-btn is-primary" href="/" id="home-btn" data-i18n="home">Home</a>
+      <a class="rf-btn-min is-solid" href="/" id="home-btn" data-i18n="home">Home</a>
     </div>
   </nav>
 </header>
 
 <main class="rf-center-stage">
-  <div class="rf-card rf-404-card">
-    <div class="rf-404-code">404</div>
+  <div class="rf-404-box">
+<pre class="rf-404-ascii" aria-label="404">
+ ██╗  ██╗ ██████╗ ██╗  ██╗
+ ██║  ██║██╔═████╗██║  ██║
+ ███████║██║██╔██║███████║
+ ╚════██║████╔╝██║╚════██║
+      ██║╚██████╔╝     ██║
+      ╚═╝ ╚═════╝      ╚═╝
+</pre>
     <p class="rf-404-msg" id="msg" data-i18n="msg">This page doesn't exist. Maybe it moved, maybe it never did.</p>
     <a class="btn-outline" href="/" id="back-btn" data-i18n="back">Back home</a>
   </div>

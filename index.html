@@ -41,8 +41,6 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
 </head>
 <body>
 
-<canvas id="rf-bg-canvas" aria-hidden="true"></canvas>
-
 <div id="rf-loader" class="rf-loader" role="status" aria-label="Loading">
   <canvas id="rf-loader-canvas" aria-hidden="true"></canvas>
   <div class="rf-loader-hud">
@@ -57,8 +55,8 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
 <header class="rf-header">
   <nav class="rf-nav" aria-label="Primary">
     <a class="rf-brand" href="/">
-      <span class="rf-brand-dot"></span>
-      <span class="rf-brand-path">~/<span>rafych</span></span>
+      <span>~/rafych</span>
+      <span class="rf-brand-cursor" aria-hidden="true"></span>
     </a>
     <div class="rf-nav-links">
       <a class="rf-nav-link" href="#stack" data-i18n="h-stack">Stack</a>
@@ -67,12 +65,11 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
       <a class="rf-nav-link" href="#contact" data-i18n="nav-contact">Contact</a>
     </div>
     <div class="rf-nav-controls">
-      <button type="button" class="rf-chip-btn rf-hide-mobile" data-fx-toggle title="Switch visual mode">FX: LIGHT</button>
-      <button type="button" class="rf-chip-btn rf-hide-mobile" data-replay-intro title="Replay intro">INTRO</button>
-      <button type="button" class="rf-chip-btn" id="lang-toggle-btn" title="Switch language">EN</button>
-      <a class="rf-chip-btn is-primary" href="/blog" id="blog-nav-btn" data-i18n="blog-nav-btn">Blog</a>
+      <button type="button" class="rf-btn-min rf-hide-mobile" data-replay-intro title="Replay ASCII intro">INTRO</button>
+      <button type="button" class="rf-btn-min" id="lang-toggle-btn" title="Switch language">EN</button>
+      <a class="rf-btn-min is-solid" href="/blog" id="blog-nav-btn" data-i18n="blog-nav-btn">Blog</a>
       <button type="button" class="rf-menu-toggle" id="rf-menu-toggle" aria-label="Menu" aria-expanded="false">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       </button>
     </div>
   </nav>
@@ -83,142 +80,103 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
       <a class="rf-nav-link" href="#blog" data-i18n="h-blog">Blog</a>
       <a class="rf-nav-link" href="#contact" data-i18n="nav-contact">Contact</a>
     </div>
-    <div class="rf-mobile-drawer-actions">
-      <button type="button" class="rf-chip-btn" data-fx-toggle>FX: LIGHT</button>
-      <button type="button" class="rf-chip-btn" data-replay-intro>INTRO</button>
+    <div>
+      <button type="button" class="rf-btn-min" data-replay-intro>INTRO</button>
     </div>
   </div>
 </header>
 
 <main class="rf-main">
-  <section class="rf-hero-bento">
-    <div class="rf-card rf-hero-card">
-      <div class="rf-hero-top">
-        <div class="rf-avatar-ring">
-          <img class="rf-avatar-img" src="/icon.png" alt="Rafych avatar">
-          <span class="rf-status-dot" title="online"></span>
-        </div>
+  <section class="rf-hero">
+    <div class="rf-hero-info">
+      <div class="rf-hero-id">
+        <img class="rf-avatar" src="/icon.png" alt="Rafych avatar">
         <div>
           <span class="rf-handle">@Rafych</span>
-          <h1 class="rf-hero-title" data-i18n="hero-name">Danil Rafailovich Ivanov</h1>
+          <h1 class="rf-hero-name" data-i18n="hero-name">Danil Rafailovich Ivanov</h1>
         </div>
       </div>
 
-      <p class="rf-hero-tagline" data-i18n="tagline">
+      <p class="rf-hero-bio" data-i18n="tagline">
         I think tech and knowledge should be free — open it, break it, rebuild it, learn from it. Locking stuff behind walls just makes everyone dumber.
       </p>
 
-      <div class="rf-badges">
-        <span class="rf-badge"><span class="rf-badge-dot" style="background:var(--rf-mint)"></span><span data-i18n="badge1">open source or it didn't happen</span></span>
-        <span class="rf-badge"><span class="rf-badge-dot" style="background:var(--rf-ice)"></span><span data-i18n="badge2">powered by curiosity + caffeine</span></span>
-        <span class="rf-badge"><span class="rf-badge-dot" style="background:var(--rf-accent)"></span><span data-i18n="badge3">ship fast, refactor later</span></span>
+      <div class="rf-hero-tags">
+        <span data-i18n="badge1">open source or it didn't happen</span>
+        <span data-i18n="badge2">powered by curiosity + caffeine</span>
+        <span data-i18n="badge3">ship fast, refactor later</span>
       </div>
     </div>
 
-    <div class="rf-card rf-terminal-card" aria-label="Interactive terminal">
-      <div class="rf-terminal-bar">
-        <div class="rf-terminal-dots">
-          <span class="d1"></span><span class="d2"></span><span class="d3"></span>
+    <div class="rf-ascii-stage" aria-label="Interactive ASCII art canvas">
+      <canvas id="rf-ascii-canvas"></canvas>
+      <div class="rf-ascii-bar">
+        <div class="rf-ascii-modes">
+          <button type="button" class="rf-mode-btn is-active" data-ascii-mode="torus">TORUS</button>
+          <button type="button" class="rf-mode-btn" data-ascii-mode="portrait">PORTRAIT</button>
+          <button type="button" class="rf-mode-btn" data-ascii-mode="wave">WAVE</button>
         </div>
-        <div class="rf-terminal-title">rafych@dev:~</div>
-      </div>
-      <div class="rf-terminal-body" id="rf-term-output">
-        <div class="rf-term-line"><span class="rf-term-prompt">rafych@dev</span>:<span class="rf-term-path">~</span>$ whoami</div>
-        <div class="rf-term-line" data-i18n="term-name">Danil, developer</div>
-        <div class="rf-term-line"><span class="rf-term-prompt">rafych@dev</span>:<span class="rf-term-path">~</span>$ cat mood.txt</div>
-        <div class="rf-term-line"><span class="rf-term-comment" data-i18n="term-mood"># same input, same output — no bugs, no cap</span></div>
-      </div>
-      <div class="rf-terminal-hints">
-        <button type="button" class="rf-term-chip" data-term-cmd="ascii">ascii</button>
-        <button type="button" class="rf-term-chip" data-term-cmd="fx">fx</button>
-        <button type="button" class="rf-term-chip" data-term-cmd="intro">intro</button>
-        <button type="button" class="rf-term-chip" data-term-cmd="help">help</button>
-      </div>
-      <div class="rf-terminal-input-row">
-        <span class="rf-term-prompt mono">$</span>
-        <input type="text" id="rf-term-input" class="rf-terminal-input" autocomplete="off" spellcheck="false" data-i18n-placeholder="term-placeholder" placeholder="help, ascii, fx...">
+        <span class="rf-ascii-hint">move / click</span>
       </div>
     </div>
   </section>
 
-  <section class="rf-section rf-reveal" id="stack">
-    <div class="rf-section-head">
+  <section class="rf-cli" aria-label="Interactive terminal">
+    <div class="rf-cli-out" id="rf-cli-out">
+      <div class="rf-cli-line"><span class="rf-cli-prompt">rafych@dev</span>:<span class="rf-cli-path">~</span>$ whoami</div>
+      <div class="rf-cli-line" data-i18n="term-name">Danil, developer</div>
+      <div class="rf-cli-line"><span class="rf-cli-prompt">rafych@dev</span>:<span class="rf-cli-path">~</span>$ cat mood.txt</div>
+      <div class="rf-cli-line"><span class="rf-cli-dim" data-i18n="term-mood"># same input, same output — no bugs, no cap</span></div>
+    </div>
+    <div class="rf-cli-bar">
+      <span class="rf-cli-prompt">$</span>
+      <input type="text" id="rf-cli-input" class="rf-cli-input" autocomplete="off" spellcheck="false" data-i18n-placeholder="term-placeholder" placeholder="type help, torus, portrait, wave, ascii...">
+      <div class="rf-cli-cmds">
+        <button type="button" class="rf-cli-chip" data-term-cmd="portrait">portrait</button>
+        <button type="button" class="rf-cli-chip" data-term-cmd="wave">wave</button>
+        <button type="button" class="rf-cli-chip" data-term-cmd="ascii">ascii</button>
+        <button type="button" class="rf-cli-chip" data-term-cmd="help">help</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section" id="stack">
+    <div class="rf-sec-head">
       <h2 data-i18n="h-stack">Stack</h2>
-      <div class="rf-section-line"></div>
+      <span class="rf-sec-meta">6 tools</span>
     </div>
-    <div class="rf-stack-grid">
-      <div class="rf-card rf-skill-card">
-        <div class="rf-skill-top">
-          <span class="rf-skill-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </span>
-          <span class="rf-skill-pct">100%</span>
-        </div>
-        <div class="rf-skill-name">HTML</div>
-        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:100%"></div></div>
+    <div class="rf-stack-list">
+      <div class="rf-stack-row">
+        <span class="rf-stack-name">HTML</span>
+        <span class="rf-stack-meter">[<span class="fill">████████████████████</span>]<span class="pct">100%</span></span>
       </div>
-
-      <div class="rf-card rf-skill-card">
-        <div class="rf-skill-top">
-          <span class="rf-skill-icon" style="color:var(--rf-accent)">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </span>
-          <span class="rf-skill-pct">90%</span>
-        </div>
-        <div class="rf-skill-name">JavaScript</div>
-        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:90%"></div></div>
+      <div class="rf-stack-row">
+        <span class="rf-stack-name">JavaScript</span>
+        <span class="rf-stack-meter">[<span class="fill">██████████████████</span>░░]<span class="pct">90%</span></span>
       </div>
-
-      <div class="rf-card rf-skill-card">
-        <div class="rf-skill-top">
-          <span class="rf-skill-icon" style="color:var(--rf-ice)">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </span>
-          <span class="rf-skill-pct">85%</span>
-        </div>
-        <div class="rf-skill-name">CSS</div>
-        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:85%"></div></div>
+      <div class="rf-stack-row">
+        <span class="rf-stack-name">CSS</span>
+        <span class="rf-stack-meter">[<span class="fill">█████████████████</span>░░░]<span class="pct">85%</span></span>
       </div>
-
-      <div class="rf-card rf-skill-card">
-        <div class="rf-skill-top">
-          <span class="rf-skill-icon" style="color:var(--rf-violet)">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-          </span>
-          <span class="rf-skill-pct">80%</span>
-        </div>
-        <div class="rf-skill-name">PHP</div>
-        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:80%"></div></div>
+      <div class="rf-stack-row">
+        <span class="rf-stack-name">PHP</span>
+        <span class="rf-stack-meter">[<span class="fill">████████████████</span>░░░░]<span class="pct">80%</span></span>
       </div>
-
-      <div class="rf-card rf-skill-card">
-        <div class="rf-skill-top">
-          <span class="rf-skill-icon" style="color:var(--rf-mint)">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-          </span>
-          <span class="rf-skill-pct">70%</span>
-        </div>
-        <div class="rf-skill-name">Linux</div>
-        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:70%"></div></div>
+      <div class="rf-stack-row">
+        <span class="rf-stack-name">Linux</span>
+        <span class="rf-stack-meter">[<span class="fill">██████████████</span>░░░░░░]<span class="pct">70%</span></span>
       </div>
-
-      <div class="rf-card rf-skill-card">
-        <div class="rf-skill-top">
-          <span class="rf-skill-icon" style="color:var(--rf-coral)">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </span>
-          <span class="rf-skill-pct">50%</span>
-        </div>
-        <div class="rf-skill-name" data-i18n="skill-network">Network</div>
-        <div class="rf-bar-track"><div class="rf-bar-fill" style="--target-w:50%"></div></div>
+      <div class="rf-stack-row">
+        <span class="rf-stack-name" data-i18n="skill-network">Network</span>
+        <span class="rf-stack-meter">[<span class="fill">██████████</span>░░░░░░░░░░]<span class="pct">50%</span></span>
       </div>
     </div>
   </section>
 
-  <section class="rf-section rf-reveal" id="projects">
-    <div class="rf-section-head">
+  <section class="rf-section" id="projects">
+    <div class="rf-sec-head">
       <h2 data-i18n="h-projects">Projects</h2>
-      <div class="rf-section-line"></div>
+      <span class="rf-sec-meta">github.com/Rafych</span>
     </div>
     <div id="projects-status" class="projects-status mono" data-i18n="proj-loading">Pulling the open, hackable stuff from GitHub…</div>
     <div class="projects" id="projects-grid"></div>
@@ -227,10 +185,10 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
     </div>
   </section>
 
-  <section class="rf-section rf-reveal" id="blog">
-    <div class="rf-section-head">
+  <section class="rf-section" id="blog">
+    <div class="rf-sec-head">
       <h2 data-i18n="h-blog">Blog</h2>
-      <div class="rf-section-line"></div>
+      <span class="rf-sec-meta">/blog</span>
     </div>
     <div class="blog-list" id="blog-list">
       {% for post in site.posts limit:3 %}
@@ -244,26 +202,21 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
     </div>
   </section>
 
-  <section class="rf-section rf-reveal" id="contact">
-    <div class="rf-section-head">
+  <section class="rf-section" id="contact">
+    <div class="rf-sec-head">
       <h2 data-i18n="h-contact">Reach me — encrypt it if you want</h2>
-      <div class="rf-section-line"></div>
+      <span class="rf-sec-meta">links</span>
     </div>
     <div class="rf-contact-grid">
-      <a class="rf-card rf-contact-card" href="https://github.com/Rafych" target="_blank" rel="noopener noreferrer">
-        <div class="icon-tag purple-tag">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" style="color:var(--rf-violet)"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11.02 11.02 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-        </div>
+      <a class="rf-contact-cell" href="https://github.com/Rafych" target="_blank" rel="noopener noreferrer">
         <div class="rf-contact-meta">
           <div class="rf-contact-label">GitHub</div>
           <div class="rf-contact-value">@Rafych</div>
         </div>
+        <span class="mono" style="color:var(--fg-dim);">↗</span>
       </a>
 
-      <a class="rf-card rf-contact-card" href="mailto:danilrafailovicivanov@proton.me">
-        <div class="icon-tag yellow-tag">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rf-accent)"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </div>
+      <a class="rf-contact-cell" href="mailto:danilrafailovicivanov@proton.me">
         <div class="rf-contact-meta">
           <div class="rf-contact-label" data-i18n="mail-label">Email</div>
           <div class="rf-contact-value">danilrafailovicivanov@proton.me</div>
@@ -271,21 +224,22 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
         <button type="button" class="rf-copy-btn" data-copy="danilrafailovicivanov@proton.me">COPY</button>
       </a>
 
-      <a class="rf-card rf-contact-card" href="https://discord.gg/VBVY2tU8Ky" target="_blank" rel="noopener noreferrer">
-        <div class="icon-tag blue-tag">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rf-ice)"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        </div>
+      <a class="rf-contact-cell" href="https://discord.gg/VBVY2tU8Ky" target="_blank" rel="noopener noreferrer">
         <div class="rf-contact-meta">
           <div class="rf-contact-label" data-i18n="discord-label">Discord</div>
           <div class="rf-contact-value">@Rafych_dev</div>
         </div>
+        <span class="mono" style="color:var(--fg-dim);">↗</span>
       </a>
     </div>
   </section>
 </main>
 
 <footer class="rf-footer">
-  <span data-i18n="footer">Made with</span> <span class="heart">♥</span> <span data-i18n="footer2">and way too much caffeine.</span>
+  <div class="rf-footer-inner">
+    <span><span data-i18n="footer">Made with</span> <span class="heart">♥</span> <span data-i18n="footer2">and way too much caffeine.</span></span>
+    <span>EOF // rafych.github.io</span>
+  </div>
 </footer>
 
 <script src="/assets/js/lang.js"></script>
@@ -308,7 +262,7 @@ var dict = {
     "nav-contact": "Contact",
     "term-name": "Danil, developer",
     "term-mood": "# same input, same output — no bugs, no cap",
-    "term-placeholder": "help, ascii, fx...",
+    "term-placeholder": "type help, torus, portrait, wave, ascii...",
     "h-stack": "Stack",
     "skill-network": "Network",
     "h-projects": "Projects",
@@ -342,7 +296,7 @@ var dict = {
     "nav-contact": "Контакты",
     "term-name": "Данил, разработчик",
     "term-mood": "# один вход — один и тот же выход, без сюрпризов",
-    "term-placeholder": "help, ascii, fx...",
+    "term-placeholder": "введите help, torus, portrait, wave, ascii...",
     "h-stack": "Стек",
     "skill-network": "Сети",
     "h-projects": "Проекты",
@@ -394,7 +348,7 @@ if (langBtn) {
 
 syncLang();
 repos.load();
-RafychFX.init({ loader: true, terminal: true, getLang: function () { return currentLang; } });
+RafychFX.init({ loader: true, asciiStage: true, terminal: true, getLang: function () { return currentLang; } });
 </script>
 
 </body>
