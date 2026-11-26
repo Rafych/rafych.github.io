@@ -1,11 +1,35 @@
 ---
 permalink: /404.html
 ---
+<!--
+  Fonts:
+  - Google Sans
+    Copyright (c) Google Inc.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Google+Sans
+    https://scripts.sil.org/OFL
+
+  - Noto Sans JP
+    Copyright (c) Google Inc.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/Noto+Sans+JP
+    https://scripts.sil.org/OFL
+
+  - JetBrains Mono
+    Copyright (c) JetBrains s.r.o.
+    Licensed under the SIL Open Font License, Version 1.1
+    https://fonts.google.com/specimen/JetBrains+Mono
+    https://scripts.sil.org/OFL
+
+  Fonts are loaded via Google Fonts (https://fonts.google.com), which serves
+  them under their respective open-source licenses. No modification has been
+  made to the font files themselves.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>404 | Rafych</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,10 +41,10 @@ permalink: /404.html
 
 <canvas id="rf-bg-canvas" aria-hidden="true"></canvas>
 
-<header class="rf-nav-wrap">
+<header class="rf-header">
   <nav class="rf-nav" aria-label="Primary">
     <a class="rf-brand" href="/">
-      <span class="rf-brand-orb"></span>
+      <span class="rf-brand-dot"></span>
       <span class="rf-brand-path">~/rafych/<span>404</span></span>
     </a>
     <div class="rf-nav-controls">
@@ -34,14 +58,14 @@ permalink: /404.html
   <div class="rf-card rf-404-card">
     <div class="rf-404-code">404</div>
     <p class="rf-404-msg" id="msg" data-i18n="msg">This page doesn't exist. Maybe it moved, maybe it never did.</p>
-    <a class="rf-btn rf-btn--primary" href="/" id="back-btn" data-i18n="back">Back home</a>
+    <a class="btn-outline" href="/" id="back-btn" data-i18n="back">Back home</a>
   </div>
 </main>
 
 <script src="/assets/js/lang.js"></script>
 <script src="/assets/js/fx.js"></script>
 <script>
-const C = {
+var C = {
   en: {
     title: '404 | Rafych',
     home: 'Home',
@@ -56,7 +80,7 @@ const C = {
   }
 };
 
-const lang = RafychLang.detect();
+var lang = RafychLang.detect();
 RafychLang.apply(C[lang], lang);
 RafychFX.init();
 </script>
