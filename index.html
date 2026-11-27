@@ -1,7 +1,7 @@
 ---
 layout: null
 title: "Home"
-description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working with HTML, CSS, JavaScript, PHP and Linux. Interested in networking, anonymization, hacking and AI."
+description: "Danil Rafailovich Ivanov (Rafych) — developer working across Web, Rust, Linux, networking, security, reverse engineering, decompiling, AI/LLM systems, CAD, spatial audio and language design."
 ---
 <!DOCTYPE html>
 <!--
@@ -33,7 +33,7 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
 <link rel="apple-touch-icon" href="/icon.png">
 {% seo %}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Danil Rafailovich Ivanov","alternateName":"Rafych","url":"https://rafych.github.io/","image":"https://rafych.github.io/icon.png","sameAs":["https://github.com/Rafych"],"knowsAbout":["HTML","CSS","JavaScript","PHP","Linux","Networking","AI"]}
+{"@context":"https://schema.org","@type":"Person","name":"Danil Rafailovich Ivanov","alternateName":"Rafych","url":"https://rafych.github.io/","image":"https://rafych.github.io/icon.png","sameAs":["https://github.com/Rafych"],"knowsAbout":["Web Development","HTML","CSS","JavaScript","PHP","Rust","Linux","Networking","Security","Reverse Engineering","Decompiling","AI","LLM","CAD","Spatial Audio","Programming Language Design"]}
 </script>
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,32 +101,40 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
 
   <section class="rf-section" id="stack">
     <div class="rf-sec-head">
-      <h2 data-i18n="h-stack">Stack</h2>
+      <h2 data-i18n="h-stack">What I build &amp; use</h2>
     </div>
     <div class="rf-stack-list">
       <div class="rf-stack-row">
-        <span class="rf-stack-name">HTML</span>
-        <span class="rf-stack-meter">[<span class="fill">████████████</span>]<span class="pct">100%</span></span>
+        <span class="rf-stack-name" data-i18n="sk-web">Web &amp; UI</span>
+        <span class="rf-stack-detail" data-i18n="sk-web-d">HTML / CSS / JS / PHP</span>
       </div>
       <div class="rf-stack-row">
-        <span class="rf-stack-name">JavaScript</span>
-        <span class="rf-stack-meter">[<span class="fill">███████████</span>░]<span class="pct">90%</span></span>
+        <span class="rf-stack-name" data-i18n="sk-rust">Rust &amp; Systems</span>
+        <span class="rf-stack-detail" data-i18n="sk-rust-d">Rust / egui / GPUI / Linux</span>
       </div>
       <div class="rf-stack-row">
-        <span class="rf-stack-name">CSS</span>
-        <span class="rf-stack-meter">[<span class="fill">██████████</span>░░]<span class="pct">85%</span></span>
+        <span class="rf-stack-name" data-i18n="sk-sec">Security &amp; RE</span>
+        <span class="rf-stack-detail" data-i18n="sk-sec-d">Pentest / Decompiling / Crypto</span>
       </div>
       <div class="rf-stack-row">
-        <span class="rf-stack-name">PHP</span>
-        <span class="rf-stack-meter">[<span class="fill">██████████</span>░░]<span class="pct">80%</span></span>
+        <span class="rf-stack-name" data-i18n="sk-net">Networking</span>
+        <span class="rf-stack-detail" data-i18n="sk-net-d">Protocols / Anonymity / Messaging</span>
       </div>
       <div class="rf-stack-row">
-        <span class="rf-stack-name">Linux</span>
-        <span class="rf-stack-meter">[<span class="fill">████████</span>░░░░]<span class="pct">70%</span></span>
+        <span class="rf-stack-name" data-i18n="sk-ai">AI &amp; LLMs</span>
+        <span class="rf-stack-detail" data-i18n="sk-ai-d">Fine-tuning / Agents / Simulation</span>
       </div>
       <div class="rf-stack-row">
-        <span class="rf-stack-name" data-i18n="skill-network">Network</span>
-        <span class="rf-stack-meter">[<span class="fill">██████</span>░░░░░░]<span class="pct">50%</span></span>
+        <span class="rf-stack-name" data-i18n="sk-cad">CAD &amp; 3D Audio</span>
+        <span class="rf-stack-detail" data-i18n="sk-cad-d">DXF / Parametric / Spatial DSP</span>
+      </div>
+      <div class="rf-stack-row">
+        <span class="rf-stack-name" data-i18n="sk-lang">Languages &amp; DSL</span>
+        <span class="rf-stack-detail" data-i18n="sk-lang-d">Compilers / Parsers / Own langs</span>
+      </div>
+      <div class="rf-stack-row">
+        <span class="rf-stack-name" data-i18n="sk-tools">Tooling &amp; Design</span>
+        <span class="rf-stack-detail" data-i18n="sk-tools-d">Installers / VRM / Typeface</span>
       </div>
     </div>
   </section>
@@ -213,7 +221,22 @@ var dict = {
     badge3: "ship fast, refactor later",
     "nav-contact": "Contact",
     "h-stack": "Stack",
-    "skill-network": "Network",
+    "sk-web": "Web & UI",
+    "sk-web-d": "HTML / CSS / JS / PHP",
+    "sk-rust": "Rust & Systems",
+    "sk-rust-d": "Rust / egui / GPUI / Linux",
+    "sk-sec": "Security & RE",
+    "sk-sec-d": "Pentest / Decompiling / Crypto",
+    "sk-net": "Networking",
+    "sk-net-d": "Protocols / Anonymity / Messaging",
+    "sk-ai": "AI & LLMs",
+    "sk-ai-d": "Fine-tuning / Agents / Simulation",
+    "sk-cad": "CAD & 3D Audio",
+    "sk-cad-d": "DXF / Parametric / Spatial DSP",
+    "sk-lang": "Languages & DSL",
+    "sk-lang-d": "Compilers / Parsers / Own langs",
+    "sk-tools": "Tooling & Design",
+    "sk-tools-d": "Installers / VRM / Typeface",
     "h-projects": "Projects",
     "proj-loading": "Pulling the open, hackable stuff from GitHub…",
     "proj-error": "GitHub's giving me the silent treatment right now.\nTry refreshing the page — nothing should stay locked away for long.",
@@ -244,7 +267,22 @@ var dict = {
     badge3: "сначала запускаю, потом причёсываю",
     "nav-contact": "Контакты",
     "h-stack": "Стек",
-    "skill-network": "Сети",
+    "sk-web": "Веб и UI",
+    "sk-web-d": "HTML / CSS / JS / PHP",
+    "sk-rust": "Rust и системы",
+    "sk-rust-d": "Rust / egui / GPUI / Linux",
+    "sk-sec": "Безопасность и RE",
+    "sk-sec-d": "Пентест / Декомпиляция / Крипто",
+    "sk-net": "Сети",
+    "sk-net-d": "Протоколы / Анонимность / Связь",
+    "sk-ai": "ИИ и LLM",
+    "sk-ai-d": "Файнтюнинг / Агенты / Симуляции",
+    "sk-cad": "CAD и 3D-аудио",
+    "sk-cad-d": "DXF / Параметрика / Простр. звук",
+    "sk-lang": "Языки и DSL",
+    "sk-lang-d": "Компиляторы / Парсеры / Свои языки",
+    "sk-tools": "Инструменты и дизайн",
+    "sk-tools-d": "Установщики / VRM / Шрифты",
     "h-projects": "Проекты",
     "proj-loading": "Тяну с GitHub всё открытое, что можно поковырять…",
     "proj-error": "GitHub сейчас молчит как партизан.\nОбновите страницу — тут всё должно быть открытым, а не запертым.",
