@@ -82,7 +82,14 @@ window.MathJax = {
   <article class="post-article">
     <p class="rf-page-label" data-i18n="pageLabel">Blog</p>
     <h1 class="rf-page-title">{{ page.title }}</h1>
-    <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time></p>
+    {% assign words = content | strip_html | number_of_words %}
+    {% assign mins = words | divided_by: 200 %}
+    {% if mins < 1 %}{% assign mins = 1 %}{% endif %}
+    <p class="post-date">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time>
+      <span class="post-readtime">~{{ mins }} <span data-i18n="minUnit">min</span></span>
+    </p>
+    <nav id="rf-toc" class="rf-toc" aria-label="Contents" hidden></nav>
     <div class="post-content">
       {{ content }}
     </div>
@@ -127,6 +134,8 @@ var C = {
   en: {
     blog: 'Blog',
     pageLabel: 'Blog',
+    tocTitle: 'Contents',
+    minUnit: 'min',
     morePostsLabel: 'More, free to take',
     searchPlaceholder: 'Dig through the archive…',
     empty: 'Nothing here yet.\nKnowledge takes time to brew.',
@@ -141,6 +150,8 @@ var C = {
   ru: {
     blog: 'Блог',
     pageLabel: 'Блог',
+    tocTitle: 'Содержание',
+    minUnit: 'мин',
     morePostsLabel: 'Ещё, и всё бесплатно',
     searchPlaceholder: 'Копаемся в архиве…',
     empty: 'Пока ничего нет.\nЗнаниям нужно время, чтобы созреть.',
@@ -169,10 +180,10 @@ document.getElementById('search-input').addEventListener('input', function (e) {
   postList.setQuery(e.target.value);
 });
 
+RafychFX.init({ tocTitle: C[currentLang].tocTitle });
 RafychLang.apply(C[currentLang], currentLang);
 postList.load();
 document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear() + ' Rafych';
-RafychFX.init();
 </script>
 
 </body>
