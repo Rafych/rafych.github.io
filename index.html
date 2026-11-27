@@ -148,7 +148,7 @@ description: "Danil Rafailovich Ivanov (Rafych) — full-stack developer working
     </div>
     <div class="blog-list">
       {% for post in site.posts limit:3 %}
-      <a class="blog-item" href="{{ post.url | relative_url }}"><span class="blog-item-title">{{ post.title }}</span><span class="blog-item-date">{{ post.date | date: "%Y-%m-%d" }}</span></a>
+      <a class="blog-item" href="{{ post.url | relative_url }}"><span class="blog-item-title">{{ post.title }}</span><span class="blog-item-date">{{ post.date | date: "%d.%m.%Y" }}</span></a>
       {% else %}
       <div class="blog-empty" data-i18n="blog-empty">Nothing here yet</div>
       {% endfor %}

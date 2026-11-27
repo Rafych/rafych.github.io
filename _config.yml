@@ -3,13 +3,21 @@ description: Rafych's personal website and blog
 url: "https://rafych.github.io"
 baseurl: ""
 lang: en
+timezone: Europe/Moscow
 author: Rafych
 logo: /icon.png
+
 defaults:
   - scope:
       path: ""
     values:
       image: /icon.png
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: default
+
 twitter:
   card: summary
 social:
@@ -20,6 +28,8 @@ social:
 markdown: kramdown
 kramdown:
   input: GFM
+  hard_wrap: true
+  auto_ids: true
   syntax_highlighter: rouge
 
 permalink: /blog/:year/:month/:day/:title/
@@ -32,6 +42,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-redirect-from
 
 exclude:
   - Gemfile
