@@ -259,14 +259,78 @@ window.RafychFX = (function () {
     resize();
   }
 
-  function initTables() {
-    each('.post-content table', function (table) {
+  function initPost(opts) {
+    var root = document.querySelector('.post-content');
+    if (!root) return;
+
+    Array.prototype.forEach.call(root.querySelectorAll('table'), function (table) {
       if (table.parentNode && table.parentNode.classList && table.parentNode.classList.contains('rf-table-wrap')) return;
       var wrap = document.createElement('div');
       wrap.className = 'rf-table-wrap';
       table.parentNode.insertBefore(wrap, table);
       wrap.appendChild(table);
     });
+
+    Array.prototype.forEach.call(root.querySelectorAll('pre'), function (pre) {
+      if (pre.parentNode && pre.parentNode.classList && pre.parentNode.classList.contains('rf-code-wrap')) return;
+      var wrap = document.createElement('div');
+      wrap.className = 'rf-code-wrap';
+      pre.parentNode.insertBefore(wrap, pre);
+      wrap.appendChild(pre);
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'rf-code-copy';
+      btn.textContent = 'COPY';
+      btn.addEventListener('click', function () {
+        var code = pre.querySelector('code');
+        copy((code ? code.textContent : pre.textContent).replace(/\n$/, ''));
+      });
+      wrap.appendChild(btn);
+    });
+
+    Array.prototype.forEach.call(root.querySelectorAll('a[href]'), function (a) {
+      var href = a.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || href.charAt(0) === '/') return;
+      try {
+        var u = new URL(href, location.href);
+        if (u.origin !== location.origin) {
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+        }
+      } catch (e) {}
+    });
+
+    Array.prototype.forEach.call(root.querySelectorAll('img'), function (img) {
+      if (!img.getAttribute('loading')) img.setAttribute('loading', 'lazy');
+      if (!img.getAttribute('decoding')) img.setAttribute('decoding', 'async');
+    });
+
+    var toc = document.getElementById('rf-toc');
+    if (toc) {
+      var heads = root.querySelectorAll('h2[id], h3[id]');
+      if (heads.length >= 3) {
+        var ul = document.createElement('ul');
+        ul.className = 'rf-toc-list';
+        for (var i = 0; i < heads.length; i++) {
+          var h = heads[i];
+          var li = document.createElement('li');
+          if (h.tagName === 'H3') li.className = 'rf-toc-sub';
+          var link = document.createElement('a');
+          link.href = '#' + h.id;
+          link.textContent = h.textContent;
+          li.appendChild(link);
+          ul.appendChild(li);
+        }
+        var title = document.createElement('p');
+        title.className = 'rf-toc-title';
+        title.setAttribute('data-i18n', 'tocTitle');
+        title.textContent = opts && opts.tocTitle ? opts.tocTitle : 'Contents';
+        toc.innerHTML = '';
+        toc.appendChild(title);
+        toc.appendChild(ul);
+        toc.hidden = false;
+      }
+    }
   }
 
   function initCopy() {
@@ -278,7 +342,7 @@ window.RafychFX = (function () {
   return {
     init: function (opts) {
       opts = opts || {};
-      initTables();
+      initPost(opts);
       initCopy();
       if (opts.portrait) initPortrait();
     }

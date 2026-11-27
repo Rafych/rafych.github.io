@@ -28,14 +28,14 @@ window.RafychLang = (function () {
     }
   }
 
-  function formatDate(iso, lang) {
+  function pad2(n) {
+    return n < 10 ? '0' + n : String(n);
+  }
+
+  function formatDate(iso) {
     var d = new Date(iso);
     if (isNaN(d.getTime())) return '';
-    try {
-      return d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-    } catch (e) {
-      return d.toISOString().slice(0, 10);
-    }
+    return pad2(d.getDate()) + '.' + pad2(d.getMonth() + 1) + '.' + d.getFullYear();
   }
 
   return { SUPPORTED_LANGS: SUPPORTED, detect: detect, apply: apply, formatDate: formatDate };

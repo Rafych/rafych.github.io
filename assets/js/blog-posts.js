@@ -11,7 +11,11 @@ window.RafychBlog = (function () {
       request = fetch('/search.json', { cache: 'no-cache' })
         .then(function (res) { return res.ok ? res.json() : []; })
         .then(function (data) {
-          return Array.isArray(data) ? data.map(function (p) { return { name: p.title || '', url: p.url, date: p.date || '' }; }) : [];
+          return Array.isArray(data) ? data.map(function (p) {
+            var title = p.title || '';
+            var hay = (title + ' ' + (p.tags || '') + ' ' + (p.excerpt || '')).toLowerCase();
+            return { name: title, url: p.url, date: p.date || '', hay: hay };
+          }) : [];
         })
         .catch(function () { return []; });
     }
@@ -48,9 +52,9 @@ window.RafychBlog = (function () {
         o.listEl.innerHTML = '<div class="blog-empty">' + esc(d.loading) + '</div>';
         return;
       }
-      var q = query.toLowerCase();
+      var q = query.trim().toLowerCase();
       var pool = o.excludeUrl ? posts.filter(function (p) { return p.url !== o.excludeUrl; }) : posts;
-      var list = q ? pool.filter(function (p) { return p.name.toLowerCase().indexOf(q) !== -1; }) : pool;
+      var list = q ? pool.filter(function (p) { return p.hay.indexOf(q) !== -1; }) : pool;
       var paginate = !!q || !o.defaultLimit;
 
       if (o.pagEl) {
