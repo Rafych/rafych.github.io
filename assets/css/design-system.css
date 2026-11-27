@@ -31,7 +31,7 @@ html {
   scroll-behavior: smooth;
   background: var(--bg);
   -webkit-text-size-adjust: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-gutter: stable;
   touch-action: pan-x pan-y;
 }
@@ -48,6 +48,7 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
   overflow-x: clip;
   display: flex;
   flex-direction: column;
@@ -107,7 +108,7 @@ input:focus-visible {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 16px;
-  padding: 13px 20px;
+  padding: 13px max(20px, env(safe-area-inset-right, 20px)) 13px max(20px, env(safe-area-inset-left, 20px));
 }
 
 .rf-brand {
@@ -347,26 +348,16 @@ input:focus-visible {
   font-weight: 600;
   font-size: 14px;
   min-width: 0;
-}
-
-.rf-stack-meter {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--fg-dim);
-  white-space: nowrap;
   flex-shrink: 0;
 }
 
-.rf-stack-meter .fill {
-  color: var(--accent);
-}
-
-.rf-stack-meter .pct {
-  display: inline-block;
-  min-width: 34px;
-  text-align: right;
+.rf-stack-detail {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
   color: var(--fg-sub);
-  margin-left: 8px;
+  text-align: right;
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 
 .projects-status {
@@ -692,8 +683,8 @@ input:focus-visible {
 }
 
 html.rf-lock-page {
-  overflow: hidden;
-  scrollbar-gutter: auto;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 body.rf-blog-page {
@@ -1229,8 +1220,11 @@ body.rf-blog-page .blog-list::-webkit-scrollbar-thumb:hover {
 }
 
 @media (max-width: 480px) {
+  body {
+    padding-top: calc(51px + env(safe-area-inset-top, 0px));
+  }
   .rf-nav {
-    padding: 11px 14px;
+    padding: 11px max(14px, env(safe-area-inset-right, 14px)) 11px max(14px, env(safe-area-inset-left, 14px));
   }
   .rf-main {
     padding: 24px 14px 64px;
@@ -1238,7 +1232,13 @@ body.rf-blog-page .blog-list::-webkit-scrollbar-thumb:hover {
   .rf-ascii-viewport {
     min-height: 250px;
   }
-  .rf-stack-meter {
+  .rf-stack-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .rf-stack-detail {
+    text-align: left;
     font-size: 11px;
   }
   .blog-item {
@@ -1247,6 +1247,22 @@ body.rf-blog-page .blog-list::-webkit-scrollbar-thumb:hover {
   }
   .blog-item-title {
     flex: 1 1 100%;
+  }
+  .rf-404-box {
+    padding: 28px 16px;
+  }
+}
+
+@media (max-height: 500px) {
+  body.rf-blog-page {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-y: visible;
+  }
+  body.rf-blog-page .rf-main,
+  body.rf-blog-page .blog-list {
+    overflow: visible;
   }
 }
 
