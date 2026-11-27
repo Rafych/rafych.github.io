@@ -259,6 +259,16 @@ window.RafychFX = (function () {
     resize();
   }
 
+  function initTables() {
+    each('.post-content table', function (table) {
+      if (table.parentNode && table.parentNode.classList && table.parentNode.classList.contains('rf-table-wrap')) return;
+      var wrap = document.createElement('div');
+      wrap.className = 'rf-table-wrap';
+      table.parentNode.insertBefore(wrap, table);
+      wrap.appendChild(table);
+    });
+  }
+
   function initCopy() {
     each('[data-copy]', function (btn) {
       btn.addEventListener('click', function () { copy(btn.getAttribute('data-copy')); });
@@ -268,6 +278,7 @@ window.RafychFX = (function () {
   return {
     init: function (opts) {
       opts = opts || {};
+      initTables();
       initCopy();
       if (opts.portrait) initPortrait();
     }
